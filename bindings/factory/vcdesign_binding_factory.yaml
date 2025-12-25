@@ -1,0 +1,107 @@
+# vcdesign_binding_factory.yaml
+version: 0.3
+kind: vcdesign_binding
+id: vcdesign_binding_factory
+binds:
+  vcdesign_core: vcdesign_boundary_contracts
+  architecture: boundary_oriented_architecture
+
+binding_guidelines:
+  intent:
+    - "vcdesign_core はドメイン非依存。binding はドメイン固有の合意を確定する"
+    - "必須オーバーライドが埋まらない場合、運用安全性が成立しない"
+  required_overrides:
+    - key: "slo_overrides"
+      reason: "Realtime/Recordの合意指標はドメイン依存であり、nullのままにしない"
+    - key: "error_budget_overrides.monthly"
+      reason: "逸脱許容（予算）が未定義だと、運用判断が仕様に押し付けられる"
+    - key: "alerting_overrides"
+      reason: "監視・アラート閾値は必ず現場/運用合意で決める"
+    - key: "time_field_mapping"
+      reason: "三時刻の実装名が未マップだと計測が破綻する"
+    - key: "domain_mapping"
+      reason: "responsibility_scopeの具体化が無いと gate が評価できない"
+
+domain_mapping:
+  source_domain: ot
+  platform_domain: [edge, it, ai]
+  responsible_domain: ot
+
+contract_bindings:
+  - contract_id: fact_ingest
+    applies_to:
+      flow_id: ot_to_it_fact
+      path: [ot, edge, it]
+      boundary_ref: technical_boundary
+    binding_tags:
+      domain_id: source_domain
+      artifact_type: fact
+    field_mapping:
+      time_model:
+        device_timestamp: time.device_timestamp
+        observed_at: time.edge_observed_at
+        ingested_at: time.ingested_at
+
+  - contract_id: fact_to_interpretation
+    applies_to:
+      boundary_ref: semantic_boundary
+      compute_layer: it
+    binding_tags:
+      domain_id: platform_domain
+      artifact_type: interpretation
+
+  - contract_id: suggestion_return
+    applies_to:
+      flow_id: it_ai_to_ot_suggestion
+      path: [it, edge, ot]
+      boundary_ref: responsibility_boundary
+    binding_tags:
+      domain_id: platform_domain
+      artifact_type: suggestion
+    gate_binding:
+      responsibility_scope:
+        value: responsible_domain
+      decision_trace.visibility_scope:
+        must_equal: responsible_domain
+
+slo_overrides:
+  realtime:
+    latency_p95_seconds: 5
+    missing_rate_monthly_max: 0.02
+    duplicate_rate_monthly_max: 0.001
+  record:
+    completeness_monthly_min: 0.995
+    correction_latency_hours_p95: 24
+    backfill_success_rate_min: 0.98
+
+error_budget_overrides:
+  monthly:
+    realtime_missing_allowance: "2%"
+    realtime_latency_violation_allowance: "p95>5s が 1%未満"
+    record_backfill_failure_allowance: "2%"
+  when_exceeded:
+    custom_actions:
+      - "notify_oncall"
+      - "switch_to_safe_mode"
+
+alerting_overrides:
+  thresholds:
+    missing_rate_threshold:
+      threshold: 0.05
+      severity: warning
+      window: "5m"
+    latency_p95_threshold:
+      threshold: 10
+      severity: critical
+      window: "5m"
+
+implementation_policies:
+  append_only_enforcement:
+    - "DB権限: writerはINSERTのみ"
+    - "UPDATE/DELETE拒否（トリガ/ポリシー）"
+    - "監査ログ（INSERT監査）"
+  idempotency_enforcement:
+    - "UNIQUE(factory, source_id, idempotency_key)"
+    - "duplicate は quality_state に残すが、上位ロジックは除外を標準"
+  control_plane_isolation:
+    - "監視値を制御へ流さない（ネットワーク/権限分離）"
