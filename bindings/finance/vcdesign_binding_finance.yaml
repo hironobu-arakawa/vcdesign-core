@@ -1,0 +1,159 @@
+version: 1.0
+kind: vcdesign_binding
+id: vcdesign_binding_finance
+
+name:
+  en: Finance Binding
+  ja: 金融バインディング
+
+description:
+  en: >
+    Finance-domain binding for VCDesign that treats ledger/confirmed transactions as authoritative Facts,
+    restricts LLM outputs to Hypothesis, and enforces explicit verification, responsibility, and audit trails
+    before any execution boundary (trades, payments, approvals, disclosures).
+  ja: >
+    台帳・確定取引を権威あるFactとして扱い、LLM出力をHypothesisに制限し、
+    実行境界（取引・送金・与信・外部開示）に入る前に検証境界・責任境界・監査ログを必須化する。
+
+core_compat:
+  range: ">=0.1.0"
+  assumes:
+    - "facts_are_immutable"
+    - "interpretation_is_provisional"
+    - "responsibility_is_explicit"
+
+depends_on:
+  - id: vcdesign_binding_analytics_llm
+    relation: "extends"
+    note: "Finance binding tightens execution/audit requirements on top of analytics_llm."
+
+finance_axioms:
+  - id: ledger_is_authority
+    statement: "Ledger / confirmed transactions / signed documents are authoritative Facts."
+  - id: execution_is_irreversible
+    statement: "Trades and payments are effectively irreversible; execution must be gated."
+  - id: auditability_is_mandatory
+    statement: "Every Resolution impacting execution must be auditable."
+
+constraints:
+  fact_authority:
+    - id: authoritative_fact_sources
+      rule: "Only authoritative sources may be treated as Fact."
+      authoritative_sources:
+        - "ledger_entries"
+        - "confirmed_transactions"
+        - "signed_documents"
+        - "audit_logs"
+      non_authoritative_examples:
+        - "market_outlook_text"
+        - "model_generated_explanations"
+        - "analyst_notes_without_evidence"
+
+  llm_output_handling:
+    - id: llm_outputs_are_hypothesis
+      rule: "All LLM outputs are Hypothesis by default and must never be stored as authoritative Fact."
+      allowed_persistence:
+        - "append_only_annotations_with_evidence_links"
+        - "draft_reports_marked_as_hypothesis"
+      must_include_labels:
+        - "classification: hypothesis"
+        - "evidence_references: []"
+
+  execution_boundary:
+    - id: no_execution_without_resolution
+      rule: "Any execution must be triggered only from Resolution, never directly from Hypothesis."
+      execution_actions:
+        - "trade_order_submission"
+        - "payment_initiation"
+        - "credit_approval"
+        - "external_disclosure"
+      required_for_execution:
+        - "verification_method"
+        - "responsible_owner"
+        - "audit_record_id"
+        - "evidence_references"
+
+  verification_boundary:
+    - id: deterministic_first
+      rule: "Prefer deterministic checks before human approval; never rely on LLM phrasing as validation."
+      verification_methods:
+        deterministic:
+          - "reconciliation_rules"
+          - "policy_rules"
+          - "threshold_checks"
+          - "double_entry_consistency"
+        human_approval:
+          - "maker_checker"
+          - "risk_owner_signoff"
+        authoritative_source:
+          - "bank_confirmation"
+          - "exchange_execution_report"
+
+responsibility_model:
+  roles:
+    - id: llm
+      owns:
+        - "draft explanations"
+        - "candidate anomaly generation"
+        - "query draft proposals (constrained)"
+      must_not_own:
+        - "execution decisions"
+        - "approval decisions"
+        - "authoritative record updates"
+
+    - id: verifier
+      owns:
+        - "deterministic validation"
+        - "evidence linking"
+        - "policy enforcement"
+      must_produce:
+        - "verification_result"
+        - "audit_record"
+
+    - id: approver
+      owns:
+        - "maker-checker approvals where required"
+        - "risk accountability for execution"
+
+resolution_policy:
+  promotion_to_resolution_requires:
+    - "evidence_references (transaction/document IDs)"
+    - "verification_method (deterministic/human/authoritative)"
+    - "responsible_owner (role + identity)"
+    - "timestamp"
+    - "audit_record_id"
+  resolution_outputs:
+    - "final_classification (e.g., reconciled / suspect / approved / rejected)"
+    - "execution_eligibility (allowed/blocked)"
+
+observability:
+  must_log:
+    - "hypothesis_generation events (with safe references, no secrets)"
+    - "verification outcomes"
+    - "approval events"
+    - "execution events"
+  must_monitor:
+    - "semantic drift (label distribution changes)"
+    - "false positive/negative feedback (if available)"
+    - "prompt data leakage risks"
+
+security_and_privacy:
+  prompt_handling:
+    - id: no_sensitive_data_in_prompts_by_default
+      rule: "Avoid PII/confidential intent in prompts; prefer references/IDs and retrieval."
+    - id: retrieval_over_copy
+      rule: "Use retrieval mechanisms rather than copying raw sensitive records into prompts."
+  access_control:
+    - "separate duties between drafting, verifying, approving"
+    - "least privilege for NL query assistants"
+
+examples:
+  recommended_use_cases:
+    - "Reconciliation assistant that proposes mismatches with evidence references"
+    - "Fraud candidate generation with deterministic verification gating"
+    - "Risk report drafts that cite authoritative sources"
+    - "NL-to-query assistant limited to approved read-only views"
+  anti_patterns:
+    - "Auto-trading based on LLM narrative or confidence wording"
+    - "Persisting LLM summaries as authoritative books/ledger"
+    - "Using LLM output as the only justification for approvals"

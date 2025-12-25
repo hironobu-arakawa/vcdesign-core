@@ -1,0 +1,108 @@
+version: 1.0
+kind: vcdesign_binding
+id: vcdesign_binding_healthcare
+
+name:
+  en: Healthcare Binding
+  ja: 医療バインディング
+
+description:
+  en: >
+    Healthcare-domain binding for VCDesign that keeps clinical Resolution human-owned,
+    separates record Facts from diagnostic/treatment Hypotheses, enforces verification boundaries,
+    and requires safety-first behavior and traceability.
+  ja: >
+    臨床のResolutionを人間（臨床責任者）に保持し、記録Factと診断/治療Hypothesisを分離し、
+    検証境界・安全側動作・追跡可能性を必須化するバインディング。
+
+core_compat:
+  range: ">=0.1.0"
+  assumes:
+    - "facts_are_immutable"
+    - "interpretation_is_provisional"
+    - "responsibility_is_explicit"
+
+depends_on:
+  - id: vcdesign_binding_analytics_llm
+    relation: "extends"
+
+healthcare_axioms:
+  - id: clinical_responsibility_is_human_owned
+    statement: "Clinical decisions (Resolution) must be owned by a licensed clinician or explicit accountable role."
+  - id: records_are_facts_diagnosis_is_not
+    statement: "Measurements/records are Facts as records; diagnosis/treatment decisions are Hypothesis until verified and approved."
+  - id: safety_first_under_uncertainty
+    statement: "Under uncertainty, prefer safe escalation and conservative behavior."
+
+constraints:
+  role_ownership:
+    - id: no_clinical_resolution_by_llm
+      rule: "LLM must not produce clinical Resolution; only Hypothesis and drafts."
+      forbidden_outputs:
+        - "final diagnosis"
+        - "treatment decision"
+        - "medication order"
+
+  verification_boundary:
+    - id: clinical_actions_require_verification_and_signoff
+      rule: "Any patient-impacting action requires deterministic checks plus clinician sign-off."
+      deterministic_checks:
+        - "allergy_contraindication_checks"
+        - "range_and_unit_sanity_checks"
+        - "drug_interaction_checks (where available)"
+      requires_human_signoff:
+        - "clinician_approval"
+
+  safety_behavior:
+    - id: escalate_when_insufficient_evidence
+      rule: "If evidence is insufficient, escalate or request additional info; do not finalize."
+      allowed_behaviors:
+        - "ask_for_missing_information"
+        - "recommend_human_review"
+        - "choose_conservative_safe_option"
+
+  citations_and_traceability:
+    - id: recommendations_must_be_traceable
+      rule: "Recommendations must include citations/provenance (guidelines or record references)."
+      required_fields:
+        - "source_record_references"
+        - "guideline_reference (if used)"
+        - "timestamp"
+      forbidden:
+        - "uncited medical claims"
+        - "fabricated guideline references"
+
+responsibility_model:
+  roles:
+    - id: llm
+      owns:
+        - "documentation drafts"
+        - "candidate hypothesis lists"
+        - "missing-information detection"
+      must_not_own:
+        - "clinical decisions"
+        - "patient-facing final statements"
+
+    - id: clinician_resolver
+      owns:
+        - "verification"
+        - "final clinical Resolution"
+        - "patient-impacting approvals"
+      must_produce:
+        - "signed_resolution_record"
+
+observability:
+  must_log:
+    - "which record references were used (not raw data by default)"
+    - "verification outcomes"
+    - "clinician approvals"
+  must_monitor:
+    - "safety incidents or near-misses (if feedback available)"
+    - "label drift in triage classifications"
+
+security_and_privacy:
+  prompt_handling:
+    - id: minimize_phi_in_prompts
+      rule: "Minimize sensitive patient data in prompts; prefer IDs/references and retrieval."
+    - id: access_controls_required
+      rule: "Enforce strict access controls and auditing for any patient data access."

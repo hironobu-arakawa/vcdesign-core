@@ -1,0 +1,112 @@
+version: 1.0
+kind: vcdesign_binding
+id: vcdesign_binding_enterprise_decision
+
+name:
+  en: Enterprise Decision Binding
+  ja: 経営意思決定バインディング
+
+description:
+  en: >
+    Enterprise-level decision binding for VCDesign that distinguishes data Facts from strategic choices,
+    constrains LLM usage to option/scenario Hypotheses, and enforces explicit ownership, assumption logging,
+    and decision traceability before execution.
+  ja: >
+    データFactと戦略的意思決定を分離し、LLMを選択肢・シナリオの仮説生成に限定して、
+    実行前に責任・前提・判断理由を明示的に記録するためのバインディング。
+
+core_compat:
+  range: ">=0.1.0"
+  assumes:
+    - "facts_are_immutable"
+    - "interpretation_is_provisional"
+    - "responsibility_is_explicit"
+
+depends_on:
+  - id: vcdesign_binding_analytics_llm
+    relation: "extends"
+
+enterprise_axioms:
+  - id: decisions_are_not_facts
+    statement: "Strategic decisions are not Facts; they are commitments under uncertainty."
+  - id: ownership_is_mandatory
+    statement: "Every Resolution must have a named owner or decision body."
+  - id: assumptions_must_be_explicit
+    statement: "Key assumptions must be recorded at decision time."
+
+constraints:
+  llm_output_handling:
+    - id: llm_generates_options_only
+      rule: "LLM outputs must be treated as options, scenarios, or analyses (Hypothesis), not decisions."
+      allowed_outputs:
+        - "option_lists"
+        - "scenario_descriptions"
+        - "risk_and_assumption_candidates"
+      forbidden_outputs:
+        - "final_decision"
+        - "priority_commitment"
+        - "budget_approval"
+
+  resolution_boundary:
+    - id: decision_requires_explicit_resolution
+      rule: "Strategic commitments require explicit Resolution with ownership and rationale."
+      required_fields:
+        - "decision_statement"
+        - "decision_owner (role/body)"
+        - "accepted_assumptions"
+        - "key_risks_acknowledged"
+        - "evidence_references"
+        - "timestamp"
+
+  execution_boundary:
+    - id: no_execution_without_decision_record
+      rule: "Execution actions must reference an approved decision record."
+      execution_actions:
+        - "budget_allocation"
+        - "investment_execution"
+        - "organizational_change"
+        - "program_launch"
+
+responsibility_model:
+  roles:
+    - id: llm
+      owns:
+        - "option and scenario drafts"
+        - "assumption and risk surfacing"
+        - "summary drafts for review"
+      must_not_own:
+        - "strategic commitments"
+        - "resource allocation decisions"
+
+    - id: decision_body
+      owns:
+        - "final strategic Resolution"
+        - "acceptance of assumptions and risks"
+        - "accountability for outcomes"
+
+resolution_policy:
+  promotion_to_resolution_requires:
+    - "decision_owner"
+    - "documented_assumptions"
+    - "documented_risks"
+    - "evidence_references (where available)"
+    - "timestamp"
+  resolution_outputs:
+    - "approved / rejected / deferred"
+    - "review_horizon (when to revisit)"
+    - "execution_scope"
+
+observability:
+  must_log:
+    - "LLM hypothesis generation events (summaries only)"
+    - "decision records and ownership"
+    - "assumptions and risks at decision time"
+  must_monitor:
+    - "assumption drift vs reality"
+    - "decision reversal frequency"
+    - "narrative bias indicators (if feedback available)"
+
+governance:
+  decision_review:
+    - id: scheduled_revisit
+      rule: "Decisions should define a review horizon to reassess assumptions."

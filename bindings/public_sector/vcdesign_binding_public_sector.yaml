@@ -1,0 +1,116 @@
+version: 1.0
+kind: vcdesign_binding
+id: vcdesign_binding_public_sector
+
+name:
+  en: Public Sector Binding
+  ja: 公共セクターバインディング
+
+description:
+  en: >
+    Public-sector binding for VCDesign that preserves procedural legitimacy,
+    transparency, and collective responsibility, constrains LLM usage to policy
+    option Hypotheses, and requires explainable, auditable Resolution records
+    before public action.
+  ja: >
+    手続的正当性・透明性・合議責任を保持し、LLMを政策選択肢の仮説生成に限定して、
+    公的行為の前に説明可能で監査可能なResolution記録を必須化するバインディング。
+
+core_compat:
+  range: ">=0.1.0"
+  assumes:
+    - "facts_are_immutable"
+    - "interpretation_is_provisional"
+    - "responsibility_is_explicit"
+
+depends_on:
+  - id: vcdesign_binding_analytics_llm
+    relation: "extends"
+
+public_sector_axioms:
+  - id: legitimacy_over_efficiency
+    statement: "Procedural legitimacy and transparency take precedence over efficiency."
+  - id: public_records_are_authoritative
+    statement: "Laws, regulations, official statistics, and published records are authoritative Facts."
+  - id: collective_responsibility_required
+    statement: "Public decisions require explicit attribution to a decision body and procedure."
+
+constraints:
+  llm_output_handling:
+    - id: llm_outputs_are_policy_hypotheses
+      rule: "LLM outputs must be treated as policy options or analyses (Hypothesis), never as official decisions."
+      allowed_outputs:
+        - "policy_option_drafts"
+        - "impact_and_risk_candidates"
+        - "stakeholder_analysis_summaries"
+      forbidden_outputs:
+        - "official_policy_statement"
+        - "final_public_decision"
+
+  resolution_boundary:
+    - id: formal_procedure_required
+      rule: "Resolution must follow formal procedures and record legitimacy."
+      required_fields:
+        - "decision_body"
+        - "procedure_followed"
+        - "legal_basis"
+        - "evidence_references"
+        - "timestamp"
+      must_be_recorded:
+        - "meeting_minutes_reference"
+        - "public_record_id (if published)"
+
+  action_boundary:
+    - id: no_public_action_without_resolution
+      rule: "Public actions must reference an approved Resolution record."
+      execution_actions:
+        - "policy_execution"
+        - "public_program_launch"
+        - "regulatory_enforcement"
+        - "public_communication"
+
+responsibility_model:
+  roles:
+    - id: llm
+      owns:
+        - "policy option drafts"
+        - "impact and trade-off analyses"
+        - "summary drafts for deliberation"
+      must_not_own:
+        - "policy approval"
+        - "public communication as authority"
+
+    - id: decision_body
+      owns:
+        - "formal Resolution"
+        - "legitimacy and accountability"
+        - "authorization of public action"
+
+resolution_policy:
+  promotion_to_resolution_requires:
+    - "decision_body"
+    - "procedure_followed"
+    - "legal_basis"
+    - "evidence_references"
+    - "timestamp"
+  resolution_outputs:
+    - "approved / rejected / deferred"
+    - "publication_scope (public/internal)"
+    - "execution_scope"
+
+observability:
+  must_log:
+    - "LLM hypothesis generation events (summaries only)"
+    - "decision records and procedures"
+    - "publication references"
+  must_monitor:
+    - "transparency gaps"
+    - "post-decision challenges or appeals"
+
+governance:
+  transparency:
+    - id: explainability_required
+      rule: "Decisions must be explainable to citizens and oversight bodies."
+  review:
+    - id: post_implementation_review
+      rule: "Public actions should define a review point for outcome evaluation."
