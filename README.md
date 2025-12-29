@@ -2,6 +2,13 @@ VCDesign Core
 
 Boundary-Oriented Design Specification for Human × AI Co-Design
 
+Premise
+
+This specification is intended for systems that continue operating after deployment,
+where decisions cannot be easily undone,
+and where responsibility must remain explicit over time.
+
+
 What this repository is
 
 This repository contains VCDesign (Value-Context Design) —
