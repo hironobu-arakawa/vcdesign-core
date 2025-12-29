@@ -1,0 +1,73 @@
+companion:
+  name: "VCDesign-BOA Companion"
+  version: "0.1.0"
+  description: >
+    Companion は VCDesign および BOA の利用者に対して、
+    境界の理解と適切な適用を支援するための補助的なガイドである。
+    Companion 自身は判断や責任を持たず、構造の説明と境界の明示のみを行う。
+
+  scope_exclusions:
+    temporal_dynamics:
+      description: >
+        時間とともに変化する Meaning, Responsibility, Context を
+        システム側でモデル化することは行わない。
+      rationale: >
+        時間的変化は無限であり、システムが扱うべき領域ではない。
+        Fact の時間変化のみを扱い、Meaning/Responsibility の変化は人間の領域とする。
+        これは、時間による意味や判断の変化をシステムが完全に扱うことは不可能であり、
+        越権や誤解を防ぐためである。
+      boundary:
+        handles: ["fact.time_series"]
+        excludes: ["meaning.evolution", "responsibility.evolution", "context.evolution"]
+
+    organizational_structure:
+      description: >
+        組織図、権限階層、文化、意思決定構造などの
+        社会的・人間的構造をモデル化しない。
+      rationale: >
+        組織構造は Context に属し、アーキテクチャの内部構造ではない。
+        BOA は責任の所在を扱うが、組織そのものを定義しない。
+      boundary:
+        handles: ["responsibility.assignment"]
+        excludes: ["organization.chart", "authority.hierarchy", "governance.structure"]
+
+    value_judgement:
+      description: >
+        良し悪し、倫理、望ましさなどの価値判断を扱わない。
+      rationale: >
+        価値判断は人間の Responsibility に属し、
+        システムが価値判断を行うことは越権となる。
+      boundary:
+        handles: ["decision.structure"]
+        excludes: ["decision.value_basis", "ethical_evaluation"]
+
+    business_process:
+      description: >
+        業務フロー、手順、SOP、現場運用ルールなどの
+        業務プロセスそのものを定義しない。
+      rationale: >
+        業務プロセスは Meaning と Responsibility の領域であり、
+        アーキテクチャが規定すべきものではない。
+      boundary:
+        handles: ["process.dependency_structure"]
+        excludes: ["process.flow", "process.steps", "sop"]
+
+    domain_semantics:
+      description: >
+        工場、医療、金融などのドメイン固有の意味を定義しない。
+      rationale: >
+        VCDesign/BOA はドメイン非依存の構造であり、
+        意味の中身は Bindings の責務である。
+      boundary:
+        handles: ["meaning.structure"]
+        excludes: ["meaning.domain_specific"]
+
+    ai_model_internals:
+      description: >
+        AI モデルの内部構造、学習方法、パラメータ、推論アルゴリズムを扱わない。
+      rationale: >
+        BOA は AI の使い方を扱うのであって、
+        AI の内部構造は BOA の外側にある。
+      boundary:
+        handles: ["meaning.input_output"]
+        excludes: ["model.architecture", "model.training", "model.parameters"]

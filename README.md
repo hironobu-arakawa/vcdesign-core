@@ -179,3 +179,10 @@ If you are trying to “understand everything” by reading this repository alon
 you are using it incorrectly.
 
 VCDesign is meant to be thought with — together with AI.
+
+Scope limitations
+
+VCDesign deliberately does **not** model time-varying human judgment,
+organizational structure, business processes, or domain-specific meaning.
+These are treated as contextual and human responsibilities.
+For details, see [docs/scope-exclusions.md](./docs/scope-exclusions.md).
