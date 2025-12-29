@@ -128,3 +128,13 @@ it is because it was formed in places where looseness did not survive.
 VCDesign Core exists to preserve those constraints
 even when systems grow, teams change,
 and decisions are revisited years later.
+
+> This document explains why VCDesign Core exists.
+> It does not describe how to use it.
+
+
+This document describes the philosophy behind VCDesign Core.
+
+The Core itself is defined and maintained in this repository.
+For usage and structure, return to [README.md](./README.md).
+

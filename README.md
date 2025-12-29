@@ -145,6 +145,14 @@ Boundaries are where systems fail — design them first
 
 AI may propose meaning, but must not own consequences
 
+## Philosophy
+
+This repository intentionally avoids explaining *why* these boundaries exist.
+
+If you want to understand the thinking that led to this Core specification,
+see [PHILOSOPHY.md](./PHILOSOPHY.md).
+
+
 Why YAML?
 
 YAML is used intentionally because it is:
