@@ -2,12 +2,15 @@
 
 VCDesign (VCD) stands for **Value Continuity Design**.
 
-VCDesign (VCD) is a design principle for sustaining value over time  
+VCDesign is a design principle for sustaining value over time  
 in systems where operation continues, context changes,  
 and judgment cannot be fully automated.
 
 VCDesign does not aim to optimize delivery.  
 It exists to prevent value erosion after delivery.
+
+For the reasoning behind VCDesign Core, see  
+➡️ [PHILOSOPHY.md](./PHILOSOPHY.md)
 
 ---
 
@@ -59,42 +62,15 @@ It exists to clarify what must not be lost.
 
 ---
 
-## Value Continuity and Context
-
-Context is not the goal of VCDesign.  
-Context is the condition that threatens value continuity.
-
-VCDesign assumes that:
-
-- context will change  
-- interpretation will drift  
-- operation will diverge from design intent  
-
-Design exists to ensure that value survives these changes.
-
-VCDesign is therefore **not** context-driven design.  
-It is design for continuity *despite* context.
-
----
-
 ## Core Principles (Immutable)
 
 VCDesign is built on irreversible principles:
 
 - **Value must be continuous**  
-  One-time success is not sufficient
-
 - **Facts are immutable**  
-  Observation must not be rewritten
-
 - **Interpretation is provisional**  
-  Meaning may change and must be revisitable
-
 - **Responsibility must be explicit**  
-  No value survives without ownership
-
 - **Boundaries are where systems fail**  
-  They must be designed first, not last
 
 These principles do not evolve.  
 Derived methods may.
@@ -129,9 +105,6 @@ It is designed to be:
 
 It is intentionally not optimized for linear human reading.
 
-If this repository feels difficult to read,  
-that is expected.
-
 VCDesign encodes:
 
 - implicit design constraints  
@@ -152,16 +125,6 @@ more reliably than humans reading prose.
 
 VCDesign does not decide for you.  
 It makes trade-offs explicit so that value is not lost silently.
-
----
-
-## Final Note
-
-If you are trying to understand VCDesign only by reading this repository,  
-you are using it incorrectly.
-
-VCDesign is meant to be thought with — together with AI —  
-in the context of real systems and real responsibility.
 
 ---
 
