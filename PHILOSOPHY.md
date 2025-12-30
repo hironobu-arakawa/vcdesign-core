@@ -1,4 +1,6 @@
 PHILOSOPHY.md
+VCDesign (VCD) stands for **Value Continuity Design**.
+
 Why VCDesign Core Exists
 
 Why this document exists

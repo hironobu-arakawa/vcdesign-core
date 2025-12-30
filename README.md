@@ -1,57 +1,128 @@
-VCDesign Core
-Boundary-Oriented Design Specification for Human × AI Co-Design
+## VCDesign (VCD) Core
+VCDesign (VCD) stands for **Value Continuity Design**.
 
-## What VCDesign / BOA Is
+VCDesign (VCD) is a design principle for sustaining value over time
+in systems where operation continues, context changes,
+and judgment cannot be fully automated.
 
-VCDesign / BOA is a design principle for deciding **what should be implemented**.
+VCDesign does not aim to optimize delivery.
+It exists to prevent value erosion after delivery.
 
-It does not provide specific implementations or templates.
-Instead, it provides the **order of thinking and the boundaries of judgment**
-that lead to safer implementations in complex, long-lived systems.
+What VCDesign Is
 
-## Premise
-This specification is intended for systems that continue operating after deployment,
-where decisions cannot be easily undone,
-and where responsibility must remain explicit over time.
+VCDesign is a design core that focuses on:
 
-## What VCDesign / BOA Provides
+Value Continuity
+Ensuring that value does not disappear as systems evolve
 
-VCDesign / BOA is designed to support decisions such as:
+Judgment Placement
+Making explicit where human judgment must remain
 
-- **When** a certain architectural judgment should be made
-- **In which context** that judgment should have been made in the first place
+Boundary Declaration
+Defining where meaning, responsibility, and automation must stop
 
-Rather than offering ready-made solutions,
-VCDesign / BOA clarifies **where decisions branch** and
-**which boundaries must be designed before implementation**.
+Survivability Under Change
+Designing systems that remain valid as context inevitably shifts
 
-In other words, VCDesign / BOA does not provide implementations —
-it provides the **thinking sequence and boundary definitions**
-that guide implementations.
+VCDesign applies to socio-technical systems where:
 
-## What this repository is
-This repository contains VCDesign (Value-Context Design) —
-a machine-readable architectural specification for designing systems across unstable boundaries such as:
+projects end, but systems remain
 
-Operation × Design
+operation cannot be controlled
 
-OT × IT
+meaning drifts across time and organizations
 
-Fact × Interpretation
+responsibility must stay explicit
 
-Responsibility × Automation
+What VCDesign Is Not
 
-It is not optimized for human reading first.
+VCDesign does not provide:
 
-Instead, this repository is designed to be:
+implementations or templates
 
-Loaded into Generative AI and used as a reasoning substrate
-for architecture review, design assistance, and boundary validation.
+reference architectures
 
-This repository is intentionally difficult to read
+best practices or checklists
 
-If you feel this repository is hard to understand by simply reading it,
-that is expected and intentional.
+product comparisons
+
+automated decision logic
+
+VCDesign is intentionally silent about how to build.
+It exists to clarify what must not be lost.
+
+Value Continuity and Context
+
+Context is not the goal of VCDesign.
+Context is the condition that threatens value continuity.
+
+VCDesign assumes that:
+
+context will change
+
+interpretation will drift
+
+operation will diverge from design intent
+
+Design exists to ensure that value survives these changes.
+
+VCDesign is therefore not context-driven design.
+It is design for continuity despite context.
+
+Core Principles (Immutable)
+
+VCDesign is built on irreversible principles:
+
+Value must be continuous
+One-time success is not sufficient
+
+Facts are immutable
+Observation must not be rewritten
+
+Interpretation is provisional
+Meaning may change and must be revisitable
+
+Responsibility must be explicit
+No value survives without ownership
+
+Boundaries are where systems fail
+They must be designed first, not last
+
+These principles do not evolve.
+Derived methods may.
+
+Relationship to BOA
+
+VCDesign defines why value must be protected
+and where judgment must remain human.
+
+BOA (Boundary-Oriented Architecture) is a construction method that:
+
+translates VCDesign judgments into system structure
+
+preserves boundaries during implementation
+
+prevents responsibility and meaning from collapsing
+
+VCDesign decides what must be sustained.
+BOA defines how to construct without breaking it.
+
+How This Repository Is Used
+
+This repository contains the immutable core of VCDesign.
+
+It is designed to be:
+
+loaded into Generative AI as a reasoning constraint
+
+used for architecture review and boundary validation
+
+shared as a design contract across teams
+
+It is intentionally not optimized for linear human reading.
+
+If this repository feels difficult to read,
+that is expected.
 
 VCDesign encodes:
 
@@ -59,149 +130,47 @@ implicit design constraints
 
 non-obvious boundary rules
 
-trade-offs that are usually carried only in engineers’ heads
+trade-offs usually carried only in engineers’ heads
 
-These are hard to express linearly in prose, but easy for AI to reason over once structured.
+AI can reason over these structures
+more reliably than humans reading prose.
 
-👉 This repository is optimized for AI cognition, not human cognition.
-
-Primary usage (recommended)
-✔ Use with Generative AI
-
-Typical usage:
-
-Load this repository into a Generative AI (LLM)
-
-Ask the AI to:
-
-review an architecture
-
-detect boundary violations
-
-explain trade-offs
-
-suggest safer design alternatives
-
-Use the AI’s output as a design review partner, not as an oracle
-
-Example prompts:
-
-“Review this system design using VCDesign principles.”
-
-“Where does this architecture mix Fact and Interpretation?”
-
-“Which boundaries are likely to break during operation?”
-
-Secondary usage (advanced)
-
-As a design contract shared across teams
-
-As a reference spec for internal design reviews
-
-As a constraint set for custom LLM tooling
-
-As a foundation for domain-specific bindings (factory, SCADA, MES, etc.)
-
-Repository structure
-vcdesign-core/
-  vcdesign_core.yaml        # Core architectural specification (immutable principles)
-  bindings/
-    factory/
-      vcdesign_binding_factory.yaml
-  docs/
-  examples/
-
-vcdesign_core.yaml
-
-The core specification:
-
-universal principles
-
-boundary definitions
-
-responsibility separation
-
-quality and observability assumptions
-
-This file should remain stable and conservative.
-
-bindings/
-
-Bindings are contextual profiles that connect the Core to real domains.
-
-They:
-
-extend the Core without overriding it
-
-encode domain constraints and operational realities
-
-are expected to evolve over time
-
-What this repository is NOT
+What This Repository Is Not
 
 ❌ A framework
-
-❌ A reference implementation
-
 ❌ A tutorial
-
 ❌ A checklist
-
 ❌ A system that produces “correct answers”
 
 VCDesign does not decide for you.
-It makes trade-offs explicit.
+It makes trade-offs explicit so that value is not lost silently.
 
-Design philosophy (short)
+Final Note
 
-Facts are immutable
-
-Interpretation is provisional
-
-Responsibility must be explicit
-
-Boundaries are where systems fail — design them first
-
-AI may propose meaning, but must not own consequences
-
-## Philosophy
-
-This repository intentionally avoids explaining *why* these boundaries exist.
-
-If you want to understand the thinking that led to this Core specification,
-see [PHILOSOPHY.md](./PHILOSOPHY.md).
-
-
-Why YAML?
-
-YAML is used intentionally because it is:
-
-readable enough for humans
-
-structured enough for machines
-
-stable across time
-
-easy to diff, version, and reason over
-
-VCDesign treats YAML not as configuration,
-but as an architectural language.
-
-License
-
-MIT License — free to use, adapt, and embed.
-Attribution appreciated but not required.
-
-Final note
-
-If you are trying to “understand everything” by reading this repository alone,
+If you are trying to understand VCDesign only by reading this repository,
 you are using it incorrectly.
 
-VCDesign is meant to be thought with — together with AI.
+VCDesign is meant to be thought with — together with AI —
+in the context of real systems and real responsibility.
 
-Scope limitations
+Scope Limitations
 
-VCDesign deliberately does **not** model time-varying human judgment,
-organizational structure, business processes, or domain-specific meaning.
-These are treated as contextual and human responsibilities.
-For details, see [docs/scope-exclusions.md](./docs/scope-exclusions.md).
+VCDesign deliberately does not model:
+
+time-varying human judgment
+
+organizational behavior
+
+business processes
+
+domain-specific meaning
+
+These are contextual and human responsibilities.
+
+VCDesign exists to ensure that
+value does not disappear when these inevitably change.
+
+VCDesign deliberately does **not** model or control certain domains.
+These exclusions are part of the design, not omissions.
+
+See: [docs/companion/scope_exclusions.yaml](./docs/scope_exclusions.yaml)
