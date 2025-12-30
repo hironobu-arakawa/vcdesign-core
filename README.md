@@ -1,16 +1,35 @@
 VCDesign Core
-
 Boundary-Oriented Design Specification for Human × AI Co-Design
 
-Premise
+## What VCDesign / BOA Is
 
+VCDesign / BOA is a design principle for deciding **what should be implemented**.
+
+It does not provide specific implementations or templates.
+Instead, it provides the **order of thinking and the boundaries of judgment**
+that lead to safer implementations in complex, long-lived systems.
+
+## Premise
 This specification is intended for systems that continue operating after deployment,
 where decisions cannot be easily undone,
 and where responsibility must remain explicit over time.
 
+## What VCDesign / BOA Provides
 
-What this repository is
+VCDesign / BOA is designed to support decisions such as:
 
+- **When** a certain architectural judgment should be made
+- **In which context** that judgment should have been made in the first place
+
+Rather than offering ready-made solutions,
+VCDesign / BOA clarifies **where decisions branch** and
+**which boundaries must be designed before implementation**.
+
+In other words, VCDesign / BOA does not provide implementations —
+it provides the **thinking sequence and boundary definitions**
+that guide implementations.
+
+## What this repository is
 This repository contains VCDesign (Value-Context Design) —
 a machine-readable architectural specification for designing systems across unstable boundaries such as:
 
