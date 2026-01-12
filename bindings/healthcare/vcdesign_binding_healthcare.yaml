@@ -1,5 +1,5 @@
-version: 1.0
-kind: vcdesign_binding
+version: 2.0
+kind: vcd_domain_binding
 id: vcdesign_binding_healthcare
 
 name:
@@ -8,101 +8,44 @@ name:
 
 description:
   en: >
-    Healthcare-domain binding for VCDesign that keeps clinical Resolution human-owned,
-    separates record Facts from diagnostic/treatment Hypotheses, enforces verification boundaries,
-    and requires safety-first behavior and traceability.
+    Binding for clinical environments that treats Records as Facts, Diagnoses as Hypotheses,
+    and mandates Human Clinician Responsibility for patient care.
   ja: >
-    臨床のResolutionを人間（臨床責任者）に保持し、記録Factと診断/治療Hypothesisを分離し、
-    検証境界・安全側動作・追跡可能性を必須化するバインディング。
+    記録をFact、診断をHypothesisとして扱い、患者ケアに対する
+    人間(臨床医)の責任を義務付ける医療環境向けバインディング。
 
-core_compat:
-  range: ">=0.1.0"
-  assumes:
-    - "facts_are_immutable"
+philosophy_grounding:
+  vcd_core_version: ">=2.0.0"
+  axioms:
+    - "responsibility_non_transferable"
     - "interpretation_is_provisional"
-    - "responsibility_is_explicit"
 
 depends_on:
   - id: vcdesign_binding_analytics_llm
     relation: "extends"
 
-healthcare_axioms:
-  - id: clinical_responsibility_is_human_owned
-    statement: "Clinical decisions (Resolution) must be owned by a licensed clinician or explicit accountable role."
-  - id: records_are_facts_diagnosis_is_not
-    statement: "Measurements/records are Facts as records; diagnosis/treatment decisions are Hypothesis until verified and approved."
-  - id: safety_first_under_uncertainty
-    statement: "Under uncertainty, prefer safe escalation and conservative behavior."
+domain_axioms:
+  - id: clinical_responsibility
+    statement: "Only a Human Clinician can hold Responsibility for patient outcomes."
+  - id: safety_first
+    statement: "In ambiguity, the system must default to 'Do No Harm' (Safe Fail)."
 
 constraints:
-  role_ownership:
-    - id: no_clinical_resolution_by_llm
-      rule: "LLM must not produce clinical Resolution; only Hypothesis and drafts."
-      forbidden_outputs:
-        - "final diagnosis"
-        - "treatment decision"
-        - "medication order"
+  interpretation_boundary:
+    - id: diagnosis_as_hypothesis
+      rule: "AI generated diagnosis/treatment plans are strictly Hypothesis."
+      forbidden: "Auto-finalizing prescriptions or orders."
 
-  verification_boundary:
-    - id: clinical_actions_require_verification_and_signoff
-      rule: "Any patient-impacting action requires deterministic checks plus clinician sign-off."
-      deterministic_checks:
-        - "allergy_contraindication_checks"
-        - "range_and_unit_sanity_checks"
-        - "drug_interaction_checks (where available)"
-      requires_human_signoff:
-        - "clinician_approval"
-
-  safety_behavior:
-    - id: escalate_when_insufficient_evidence
-      rule: "If evidence is insufficient, escalate or request additional info; do not finalize."
-      allowed_behaviors:
-        - "ask_for_missing_information"
-        - "recommend_human_review"
-        - "choose_conservative_safe_option"
-
-  citations_and_traceability:
-    - id: recommendations_must_be_traceable
-      rule: "Recommendations must include citations/provenance (guidelines or record references)."
-      required_fields:
-        - "source_record_references"
-        - "guideline_reference (if used)"
-        - "timestamp"
-      forbidden:
-        - "uncited medical claims"
-        - "fabricated guideline references"
+  responsibility_boundary:
+    - id: clinical_signoff
+      rule: "Patient-impacting actions require Clinician Resolution (Sign-off)."
+      rationale: "Aligns with VCD Core: Accountability cannot be delegated to algorithms."
 
 responsibility_model:
   roles:
-    - id: llm
-      owns:
-        - "documentation drafts"
-        - "candidate hypothesis lists"
-        - "missing-information detection"
-      must_not_own:
-        - "clinical decisions"
-        - "patient-facing final statements"
+    - id: llm_assistant
+      nature: "Medical Scribe / Analysis Assistant (Hypothesis)"
+    - id: clinician
+      nature: "Licensed Responsible Actor (Resolution)"
 
-    - id: clinician_resolver
-      owns:
-        - "verification"
-        - "final clinical Resolution"
-        - "patient-impacting approvals"
-      must_produce:
-        - "signed_resolution_record"
-
-observability:
-  must_log:
-    - "which record references were used (not raw data by default)"
-    - "verification outcomes"
-    - "clinician approvals"
-  must_monitor:
-    - "safety incidents or near-misses (if feedback available)"
-    - "label drift in triage classifications"
-
-security_and_privacy:
-  prompt_handling:
-    - id: minimize_phi_in_prompts
-      rule: "Minimize sensitive patient data in prompts; prefer IDs/references and retrieval."
-    - id: access_controls_required
-      rule: "Enforce strict access controls and auditing for any patient data access."
+# NOTE: Privacy (HIPAA/GDPR) compliance details are delegated to IDG/BOA context.

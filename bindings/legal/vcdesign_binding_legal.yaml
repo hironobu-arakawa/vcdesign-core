@@ -1,5 +1,5 @@
-version: 1.0
-kind: vcdesign_binding
+version: 2.0
+kind: vcd_domain_binding
 id: vcdesign_binding_legal
 
 name:
@@ -8,107 +8,43 @@ name:
 
 description:
   en: >
-    Legal-domain binding for VCDesign that strictly separates documentary Facts from Interpretations,
-    requires citations and provenance, enforces version/date/jurisdiction validity, and keeps final
-    legal responsibility with named human owners.
+    Binding for legal workflows that treats Documents as Facts and Opinions as Hypotheses,
+    requiring Citation and Human validation for legal advice.
   ja: >
-    文書としてのFact（契約・法令・判例・記録）と解釈（Interpretation）を厳密に分離し、
-    引用・来歴・版管理・効力日・法域を必須化して、最終責任を人間に保持するバインディング。
+    文書をFact、見解をHypothesisとして扱い、法的アドバイスには
+    引用と人間による検証を要求する法務ワークフロー向けバインディング。
 
-core_compat:
-  range: ">=0.1.0"
-  assumes:
+philosophy_grounding:
+  vcd_core_version: ">=2.0.0"
+  axioms:
     - "facts_are_immutable"
-    - "interpretation_is_provisional"
-    - "responsibility_is_explicit"
+    - "interpretation_is_versioned"
 
 depends_on:
   - id: vcdesign_binding_analytics_llm
     relation: "extends"
 
-legal_axioms:
-  - id: documents_are_facts_as_documents
-    statement: "Primary legal texts are Facts as documents; meaning/outcome is Interpretation."
-  - id: citation_is_required
-    statement: "Claims must be traceable to sources via citations and provenance."
-  - id: context_validity_matters
-    statement: "Jurisdiction, effective date, and version validity are mandatory for Resolution."
+domain_axioms:
+  - id: text_is_fact
+    statement: "Signed Contracts and Statutes are Facts. Their meaning is Interpretation."
+  - id: citation_traceability
+    statement: "Legal validity relies on provenance (Citation)."
 
 constraints:
-  fact_vs_interpretation:
-    - id: documentary_fact_only
-      rule: "Treat documents (texts and signed records) as Fact; treat meaning/outcome statements as Hypothesis unless verified."
-      documentary_fact_sources:
-        - "signed_contract_versions"
-        - "statutes_regulations_versions"
-        - "court_decisions_versions"
-        - "official_policies_versions"
-        - "evidence_logs"
-
-  citations_and_provenance:
-    - id: citations_required_for_claims
-      rule: "Any claim used for Resolution must include citations and provenance."
-      required_fields:
-        - "source_document_id"
-        - "source_version"
-        - "section_or_clause_reference"
-        - "timestamp"
-      forbidden:
-        - "uncited assertions"
-        - "fabricated citations"
-
-  validity_checks:
-    - id: validity_required
-      rule: "Resolution must verify jurisdiction, effective date, and version applicability."
-      must_check:
-        - "jurisdiction_scope"
-        - "effective_date_range"
-        - "document_version"
-
-  action_boundary:
-    - id: no_external_legal_action_without_human_resolution
-      rule: "External legal actions require explicit human legal owner approval."
-      actions_includes:
-        - "contract_acceptance_or_termination"
-        - "external_notices"
-        - "filings_or_disclosures"
-        - "policy_publication"
+  fact_boundary:
+    - id: documentary_evidence
+      rule: "Only traceable, verifiably cited text counts as Evidence for Resolution."
+  
+  responsibility_boundary:
+    - id: counsel_opinion
+      rule: "Final legal opinion/advice requires a Named Human (Counsel) Resolution."
+      rationale: "Aligns with VCD Core: Legal liability resides with the practitioner, not the tool."
 
 responsibility_model:
   roles:
-    - id: llm
-      owns:
-        - "drafting interpretation hypotheses"
-        - "clause comparison summaries"
-        - "issue spotting candidates"
-      must_not_own:
-        - "final legal advice"
-        - "external legal communications"
-        - "validity determinations"
+    - id: llm_paralegal
+      nature: "search / summarization / drafting (Hypothesis)"
+    - id: legal_counsel
+      nature: "Legal Opinion Owner (Resolution)"
 
-    - id: legal_reviewer
-      owns:
-        - "citation verification"
-        - "validity checks (date/jurisdiction/version)"
-        - "final interpretation / advice classification"
-      must_produce:
-        - "approved_resolution_with_citations"
-
-resolution_policy:
-  promotion_to_resolution_requires:
-    - "citations (document/version/section)"
-    - "validity_check_results"
-    - "responsible_owner"
-    - "timestamp"
-  resolution_outputs:
-    - "final_classification (approved / rejected / needs review)"
-    - "scope_statement (jurisdiction/date/version)"
-
-observability:
-  must_log:
-    - "which documents/versions were used"
-    - "citation verification outcomes"
-    - "who approved and when"
-  must_monitor:
-    - "document version drift"
-    - "citation failure rate"
+# NOTE: Jurisdiction checks and versioning logic are delegated to IDG/BOA.

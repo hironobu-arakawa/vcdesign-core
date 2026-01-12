@@ -1,5 +1,5 @@
-version: 1.0
-kind: vcdesign_binding
+version: 2.0
+kind: vcd_domain_binding
 id: vcdesign_binding_enterprise_decision
 
 name:
@@ -8,105 +8,45 @@ name:
 
 description:
   en: >
-    Enterprise-level decision binding for VCDesign that distinguishes data Facts from strategic choices,
-    constrains LLM usage to option/scenario Hypotheses, and enforces explicit ownership, assumption logging,
-    and decision traceability before execution.
+    Binding for strategic decisions that distinguishes Data Facts from Strategic Commitments,
+    enforcing Human Responsibility for all outcomes.
   ja: >
-    データFactと戦略的意思決定を分離し、LLMを選択肢・シナリオの仮説生成に限定して、
-    実行前に責任・前提・判断理由を明示的に記録するためのバインディング。
+    データFactと戦略的コミットメントを分離し、すべての結果に対する人間の責任を強制する、
+    経営意思決定のためのバインディング。
 
-core_compat:
-  range: ">=0.1.0"
-  assumes:
-    - "facts_are_immutable"
-    - "interpretation_is_provisional"
+philosophy_grounding:
+  vcd_core_version: ">=2.0.0"
+  axioms:
     - "responsibility_is_explicit"
+    - "interpretation_is_not_decision"
 
 depends_on:
   - id: vcdesign_binding_analytics_llm
     relation: "extends"
 
-enterprise_axioms:
+domain_axioms:
   - id: decisions_are_not_facts
-    statement: "Strategic decisions are not Facts; they are commitments under uncertainty."
+    statement: "Strategic decisions are not observable Facts; they are commitments created by Responsibility."
   - id: ownership_is_mandatory
-    statement: "Every Resolution must have a named owner or decision body."
-  - id: assumptions_must_be_explicit
-    statement: "Key assumptions must be recorded at decision time."
+    statement: "Every strategic Resolution must have a named Owner."
 
 constraints:
-  llm_output_handling:
-    - id: llm_generates_options_only
-      rule: "LLM outputs must be treated as options, scenarios, or analyses (Hypothesis), not decisions."
-      allowed_outputs:
-        - "option_lists"
-        - "scenario_descriptions"
-        - "risk_and_assumption_candidates"
-      forbidden_outputs:
-        - "final_decision"
-        - "priority_commitment"
-        - "budget_approval"
+  interpretation_boundary:
+    - id: llm_as_staff_officer
+      rule: "LLM outputs act as Staff Officer analysis (Hypothesis), never as Commander decision."
+      allowed: "Scenario planning, Risk simulation"
+      forbidden: "Final Resource Allocation"
 
-  resolution_boundary:
-    - id: decision_requires_explicit_resolution
-      rule: "Strategic commitments require explicit Resolution with ownership and rationale."
-      required_fields:
-        - "decision_statement"
-        - "decision_owner (role/body)"
-        - "accepted_assumptions"
-        - "key_risks_acknowledged"
-        - "evidence_references"
-        - "timestamp"
-
-  execution_boundary:
-    - id: no_execution_without_decision_record
-      rule: "Execution actions must reference an approved decision record."
-      execution_actions:
-        - "budget_allocation"
-        - "investment_execution"
-        - "organizational_change"
-        - "program_launch"
+  responsibility_boundary:
+    - id: commitment_gate
+      rule: "Strategic commitments require an explicit Act of Resolution by a Responsible Body."
+      rationale: "Aligns with VCD Core: Responsibility creates the 'Fact' of decision."
 
 responsibility_model:
   roles:
     - id: llm
-      owns:
-        - "option and scenario drafts"
-        - "assumption and risk surfacing"
-        - "summary drafts for review"
-      must_not_own:
-        - "strategic commitments"
-        - "resource allocation decisions"
-
+      nature: "Staff / Analyst (Hypothesis Generator)"
     - id: decision_body
-      owns:
-        - "final strategic Resolution"
-        - "acceptance of assumptions and risks"
-        - "accountability for outcomes"
+      nature: "Commander / Responsible Owner (Resolution Authority)"
 
-resolution_policy:
-  promotion_to_resolution_requires:
-    - "decision_owner"
-    - "documented_assumptions"
-    - "documented_risks"
-    - "evidence_references (where available)"
-    - "timestamp"
-  resolution_outputs:
-    - "approved / rejected / deferred"
-    - "review_horizon (when to revisit)"
-    - "execution_scope"
-
-observability:
-  must_log:
-    - "LLM hypothesis generation events (summaries only)"
-    - "decision records and ownership"
-    - "assumptions and risks at decision time"
-  must_monitor:
-    - "assumption drift vs reality"
-    - "decision reversal frequency"
-    - "narrative bias indicators (if feedback available)"
-
-governance:
-  decision_review:
-    - id: scheduled_revisit
-      rule: "Decisions should define a review horizon to reassess assumptions."
+# NOTE: Governance and audit logging details are delegated to IDG/BOA contexts.
