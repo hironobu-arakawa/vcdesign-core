@@ -1,5 +1,5 @@
-version: 1.0
-kind: vcdesign_binding
+version: 2.0
+kind: vcd_domain_binding
 id: vcdesign_binding_analytics_llm
 
 name:
@@ -8,102 +8,41 @@ name:
 
 description:
   en: >
-    A domain-neutral binding that constrains Generative AI usage to Hypothesis generation,
-    and enforces explicit verification and responsibility boundaries before any action.
+    A domain binding that constraints Generative AI usage to Hypothesis generation,
+    enforcing the philosophical separation of Interpretation and Responsibility.
   ja: >
     生成AI（LLM）の利用を「仮説（Hypothesis）」に限定し、
-    検証境界と責任境界を明示してから初めて確定・通知・実行へ進むためのバインディング。
+    解釈と責任の哲学的分離を強制するためのドメインバインディング。
 
-core_compat:
-  range: ">=0.1.0"
-  assumes:
-    - "facts_are_immutable"
+philosophy_grounding:
+  vcd_core_version: ">=2.0.0"
+  axioms:
     - "interpretation_is_provisional"
-    - "responsibility_is_explicit"
+    - "responsibility_must_be_explicit"
 
 binding_intent:
   primary_goal:
-    - "Prevent LLM outputs from being stored/used as Facts without verification."
-    - "Make responsibility ownership explicit for all outputs and actions."
-  secondary_goal:
-    - "Enable safe human×AI co-design and decision support workflows."
+    - "Ensure AI outputs remain Hypothesis and never become Fact without Resolution."
+    - "Enforce human Responsibility for all AI-assisted decisions."
 
 constraints:
-  output_classification:
-    - id: all_llm_outputs_are_hypothesis
-      rule: "Any LLM output must be classified as Hypothesis by default."
-      rationale: "Model outputs are non-deterministic and may hallucinate."
-  write_paths:
-    - id: no_direct_write_to_fact
-      rule: "LLM outputs must not overwrite or mutate Fact records."
-      allowed:
-        - "Append-only annotations linked to Fact by reference."
-        - "Separate Resolution records that cite evidence."
-  action_paths:
-    - id: no_direct_action_without_resolution
-      rule: "LLM outputs must not trigger external actions without passing Resolution."
-      actions_includes:
-        - "notifications"
-        - "tickets"
-        - "actuation"
-        - "external communications"
-  verification_boundary:
-    - id: verification_required_for_final_claims
-      rule: "Any final claim must cross an explicit verification boundary."
-      verification_methods:
-        - "deterministic checks"
-        - "rule-based validation"
-        - "human approval"
-        - "trusted authoritative source"
+  interpretation_boundary:
+    - id: hypothesis_classification
+      rule: "All AI outputs must be classified as Hypothesis (Interpretation)."
+      rationale: "Aligns with VCD Core: AI cannot hold Responsibility."
+  
+  responsibility_boundary:
+    - id: resolution_requirement
+      rule: "Conversion from Hypothesis to Decision requires an explicit Resolution act."
+      rationale: "Aligns with VCD Core: Responsibility anchors value."
 
 responsibility_model:
   roles:
     - id: llm
-      owns:
-        - "proposal generation"
-        - "summarization drafts"
-        - "hypothesis generation"
-      must_not_own:
-        - "final decisions"
-        - "external communications"
-        - "world-changing actions"
-    - id: resolver
-      owns:
-        - "verification"
-        - "finalization (Resolution)"
-        - "approval routing"
-        - "policy enforcement"
-    - id: operator
-      owns:
-        - "accept/reject decisions where human judgment is required"
-        - "accountability for actions"
+      nature: "Generator of Interpretation (Hypothesis)"
+      constraint: "Cannot be a Responsible Actor."
+    - id: human_operator
+      nature: "Owner of Context and Responsibility"
+      constraint: "Must explicitly resolve Hypotheses."
 
-resolution_policy:
-  default_state:
-    - "hypothesis_only"
-  promotion_to_resolution_requires:
-    - "evidence_reference"
-    - "verification_method"
-    - "responsible_owner"
-    - "timestamp"
-  auditability:
-    - "store the prompt context hash (optional)"
-    - "store model identifier (optional)"
-    - "store evidence links (required)"
-
-observability:
-  must_log:
-    - "LLM input references (not raw secrets)"
-    - "LLM output classification (Hypothesis)"
-    - "verification outcomes"
-    - "who approved what and when"
-  must_monitor:
-    - "semantic drift indicators (label distribution changes)"
-    - "false positive / false negative feedback loops (if available)"
-
-examples:
-  recommended_use_cases:
-    - "Incident summary drafts for operators"
-    - "Candidate root cause hypotheses with evidence pointers"
-    - "Mapping suggestions (tag→meaning) as proposals"
-    - "Natural language query assista
+# NOTE: Implementation details (logging, security, metrics) are delegated to IDG/BOA layers.

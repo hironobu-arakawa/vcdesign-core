@@ -1,198 +1,139 @@
 # Scope Exclusions  
-VCDesign / BOA Companion  
-Boundary-Oriented Architecture — What It Does *Not* Model
+# VCD (Philosophy) & BOA (Architecture) Companion  
+# What VCDesign Does *Not* Model
 
-This document defines the **explicit non-scope** of VCDesign and BOA.
+This document defines the **explicit non-scope** of the Value Continuity Design (VCD) ecosystem.
 
-VCDesign is a boundary-oriented architectural specification.
-It defines **what must remain stable**, **what must remain separate**,  
-and **where responsibility must stay human**.
+VCD is a philosophical core defining **why boundaries must exist**.
+BOA is the architectural layer defining **how to construct them**.
 
-Equally important is clarifying **what VCDesign does *not* attempt to model**.  
+Equally important is clarifying **what the ecosystem does *not* attempt to model**.  
 These exclusions prevent misuse, overreach, and false expectations.
-
-This document is part of the Companion set.  
-It supplements the Core but does not modify it.
 
 ---
 
 # 1. Temporal Dynamics  
-### VCDesign does **not** model time-varying human judgment, meaning, or responsibility.
+### VCD does **not** model time-varying human judgment.
 
 Meaning and responsibility evolve with context, experience, and operational reality.  
 These changes cannot be fully captured by any static specification.
 
-VCDesign handles:
-
+VCD handles:
 - ✔ Fact time-series (e.g., sensor values, logs)
+- ✔ Versioning of Interpretation
 
-VCDesign does **not** handle:
-
+VCD does **not** handle:
 - ✖ Meaning drift over time  
 - ✖ Shifts in human judgment  
 - ✖ Operational exceptions or emergent behavior  
-- ✖ Contextual reinterpretation of events  
 
 **Principle:**  
-Fact の時間変化のみを扱い、Meaning / Responsibility の変化は人間の領域とする。  
-これは、時間による意味や判断の変化をシステムが完全に扱うことは不可能であり、  
-越権や誤解を防ぐためである.
+Fact の時間変化のみを扱い、Meaning / Responsibility の変化は人間の領域とする。
 
 ---
 
 # 2. Organizational Structure  
-### VCDesign does **not** define organizational charts, authority hierarchies, or governance models.
+### VCD does **not** define organizational charts or governance models.
 
 Organizations change faster than systems.  
 Embedding organizational structure into architecture creates brittle designs.
 
-VCDesign handles:
+VCD handles:
+- ✔ Responsibility assignment boundaries (Who owns what *role*)
 
-- ✔ Responsibility assignment boundaries  
-- ✔ Where decisions become final  
-
-VCDesign does **not** handle:
-
+VCD does **not** handle:
 - ✖ Organizational hierarchy  
 - ✖ Approval chains  
-- ✖ Cultural norms  
-- ✖ Team structure or reporting lines  
+- ✖ Team structure  
 
-These belong to **Context**, not architecture.
+These belong to **Context**, not philosophy or architecture.
 
 ---
 
 # 3. Value Judgement and Ethics  
-### VCDesign does **not** define what is “good,” “correct,” or “ethical.”
+### VCD does **not** define what is “good” or “correct.”
 
 Value judgments are inherently human.  
-VCDesign only defines **where** decisions occur, not **what** decisions should be.
+VCD only defines **where** decisions occur, not **what** decisions should be.
 
-VCDesign handles:
+VCD handles:
+- ✔ Decision structure (Resolution)
 
-- ✔ Decision structure  
-- ✔ Responsibility boundaries  
-
-VCDesign does **not** handle:
-
+VCD does **not** handle:
 - ✖ Ethical evaluation  
 - ✖ Moral correctness  
-- ✖ Organizational values  
 - ✖ Trade-off preferences  
-
-These remain human responsibilities.
 
 ---
 
 # 4. Business Processes  
-### VCDesign does **not** define workflows, SOPs, or operational procedures.
+### VCD does **not** define workflows or SOPs.
 
-Business processes are domain- and organization-specific.  
-They evolve with practice, regulation, and local knowledge.
+Business processes are domain- and organization-specific.
 
-VCDesign handles:
+VCD handles:
+- ✔ Structural dependencies (Fact → Interpretation)
 
-- ✔ Structural dependencies  
-- ✔ Where interpretation enters the system  
-
-VCDesign does **not** handle:
-
+VCD does **not** handle:
 - ✖ Process flows  
 - ✖ Step-by-step procedures  
 - ✖ SOPs  
-- ✖ Operational rules  
 
-These belong to Meaning and Responsibility, not architecture.
+These belong to the IDG (Implementation) layer or external context.
 
 ---
 
 # 5. Domain-Specific Semantics  
-### VCDesign does **not** define the meaning of domain concepts.
+### VCD does **not** define the meaning of domain concepts.
 
-VCDesign is domain-agnostic by design.  
-Domain semantics belong in **Bindings**, not in the Core or Companion.
+VCD is domain-agnostic by design.  
+Domain semantics belong in **Bindings**.
 
-VCDesign handles:
+VCD handles:
+- ✔ Meaning structure (Fact / Interpretation / Resolution)
 
-- ✔ Meaning structure (Fact → Interpretation → Resolution)
-
-VCDesign does **not** handle:
-
-- ✖ Factory-specific terminology  
-- ✖ Medical or financial semantics  
-- ✖ Domain-specific thresholds or rules  
+VCD does **not** handle:
+- ✖ Domain-specific terminology (e.g., "Trade", "Diagnosis")
+- ✖ Domain-specific thresholds  
 
 Bindings extend the Core for each domain.
 
 ---
 
 # 6. AI Model Internals  
-### VCDesign does **not** define how AI models work internally.
+### VCD does **not** define how AI models work internally.
 
-VCDesign governs **how AI participates in decision structures**,  
-not how AI is built.
+VCD governs **how AI participates in decision structures**, not how AI is built.
 
-VCDesign handles:
+VCD handles:
+- ✔ AI-generated interpretations as Meaning (Hypothesis)
+- ✔ Boundaries preventing AI from owning consequences
 
-- ✔ AI-generated interpretations as Meaning  
-- ✔ Boundaries preventing AI from owning consequences  
-
-VCDesign does **not** handle:
-
+VCD does **not** handle:
 - ✖ Model architecture  
 - ✖ Training methods  
-- ✖ Parameters  
 - ✖ Inference algorithms  
-
-These are implementation details outside the architectural boundary.
 
 ---
 
 # Summary Table
 
-| Area | VCDesign Handles | VCDesign Does *Not* Handle |
-|------|------------------|----------------------------|
-| Time | Fact time-series | Meaning/Responsibility evolution |
-| Organization | Responsibility boundaries | Org charts, authority, governance |
-| Values | Decision structure | Ethics, correctness, preferences |
-| Processes | Structural dependencies | Workflows, SOPs, procedures |
-| Semantics | Meaning structure | Domain-specific meaning |
-| AI | Interpretation boundaries | Model internals |
-
----
-
-# Why these exclusions matter
-
-These exclusions exist to:
-
-- prevent overreach  
-- avoid false expectations  
-- keep the Core stable  
-- preserve human responsibility  
-- maintain boundary clarity  
-- ensure VCDesign remains domain-agnostic  
-
-VCDesign is powerful precisely because it **does not** attempt to model everything.
-
-It defines **where decisions become final**,  
-not **what decisions should be**.
+| Area | VCD Handles | VCD Does *Not* Handle |
+|------|-------------|-----------------------|
+| Time | Fact continuity, Versioning | Meaning evolution |
+| Organization | Responsibility boundaries | Org charts, governance |
+| Values | Decision structure | Ethics, preferences |
+| Processes | Structural dependencies | Workflows, SOPs |
+| Semantics | Meaning structure | Domain meaning |
+| AI | Hypothesis boundaries | Model internals |
 
 ---
 
 # Relationship to the Core
 
-This document:
+This document clarifies the **outer boundary** of the VCD ecosystem.
 
-- does **not** modify the Core  
-- does **not** extend the Core  
-- does **not** override any Core principle  
+For the Philosophical Core, see:  
+`vcdesign_core.yaml`
 
-It clarifies the **outer boundary** of VCDesign and BOA,  
-so that both humans and AI can use the Core safely and correctly.
-
-For the Core specification, see:  
-`vcdesign-core/vcdesign_core.yaml`
-
-For philosophical background, see:  
-`PHILOSOPHY.md`
-
+For Architecture, refer to the BOA repository.
