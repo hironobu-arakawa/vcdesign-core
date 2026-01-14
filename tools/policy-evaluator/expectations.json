@@ -1,0 +1,5 @@
+{
+    "proposal_allow_kpi.json": "ALLOW",
+    "proposal_review_business.json": "REVIEW",
+    "proposal_deny_safety.json": "DENY"
+}

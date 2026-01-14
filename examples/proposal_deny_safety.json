@@ -1,0 +1,26 @@
+{
+    "id": "P-DENY-SAFETY",
+    "title": "Reduce safety buffer to shorten cycle time",
+    "actor": {
+        "role": "line_engineer",
+        "id": "u123"
+    },
+    "effects": {
+        "safety_margin_delta": -0.1,
+        "incident_risk_delta": 0.02,
+        "data_integrity_delta": 0,
+        "auditability_delta": 0,
+        "traceability_delta": 0,
+        "fairness_delta": 0,
+        "business_viability_delta": 0,
+        "capex_delta": 0,
+        "kpi_delta": 0.08
+    },
+    "flags": {
+        "compliance_violation": false,
+        "mandatory_record_missing": false,
+        "hidden_monitoring": false,
+        "conceal_defects": false,
+        "safety_override": false
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "id": "P-2026-01-14-0007",
+    "title": "Reduce safety buffer to shorten cycle time",
+    "actor": {
+        "role": "line_engineer",
+        "id": "u123"
+    },
+    "effects": {
+        "safety_margin_delta": -0.1,
+        "incident_risk_delta": 0.02,
+        "compliance_delta": 0,
+        "data_integrity_delta": 0,
+        "auditability_delta": 0,
+        "fairness_delta": 0,
+        "business_viability_delta": 0,
+        "kpi_delta": 0.08
+    },
+    "flags": {
+        "compliance_violation": false,
+        "hidden_monitoring": false
+    }
+}
