@@ -1,0 +1,74 @@
+# VCDesign Phase Diagnosis
+
+This document is not a constitution.
+It does not prescribe what should be done.
+
+It exists to help systems and their operators
+recognize where they currently stand.
+
+---
+
+## Phase 0: Pre-Constitutional Systems
+
+- There is no explicit decision boundary.
+- Design choices are considered correct by default.
+- Success is measured only by immediate outcomes.
+- Continuity depends on human effort and endurance.
+
+This phase is not a failure.
+It is the condition under which many systems still operate.
+
+When resources are abundant, systems may continue.
+When they are exhausted, systems end.
+
+---
+
+## Phase 1: Exploration Constitution
+
+- Systems begin to optimize for speed and output.
+- CI/CD, MVPs, and rapid iteration become possible.
+- Waste is accepted as part of progress.
+
+This phase enables learning.
+It does not guarantee continuity.
+
+Many successful products have passed through this phase.
+Some remain here indefinitely.
+
+---
+
+## Phase 2: Hybrid / Transitional
+
+- Partial boundaries are introduced.
+- Some decisions are reviewed; others are not.
+- Automation increases, but human responsibility does not decrease.
+- Time introduces new constraints that were not anticipated.
+
+This phase often feels productive but unstable.
+
+Systems here are rarely broken.
+They are simply hard to sustain.
+
+---
+
+## Phase 3: VCDesign / VCD
+
+- Decisions are explicitly designed.
+- Responsibility is treated as continuous across time.
+- Decisions that cannot inherit responsibility are not generated.
+- Systems stop when responsibility cannot be clearly assigned.
+
+This phase is not superior.
+It is chosen when continuity matters more than speed.
+
+---
+
+## A Note on Choice
+
+Not all systems need to move to Phase 3.
+
+Different constitutions exist.
+Different objectives justify different structures.
+
+VCDesign is one valid answer
+when responsibility must not be lost over time.
