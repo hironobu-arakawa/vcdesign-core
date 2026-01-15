@@ -8,6 +8,7 @@ VCDesign (VCD) is a design philosophy (and implementation ecosystem) for sustain
 VCDesign does not aim to optimize delivery.  
 It exists to prevent value erosion after delivery.
 
+**Official Website:** [vcdesign.org](https://vcdesign.org/)
 ---
 
 ## Why VCDesign Now

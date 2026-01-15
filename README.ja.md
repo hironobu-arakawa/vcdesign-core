@@ -8,6 +8,8 @@ VCDesign (VCD) は、運用が継続し、コンテキストが変化し、判�
 VCDesign はデリバリーの最適化を目指すものではありません。
 デリバリー後の **価値の摩耗 (value erosion)** を防ぐために存在します。
 
+**公式サイト:** [日本語](https://vcdesign.org/ja)
+
 ---
 
 ## なぜ今、VCDesignが必要なのか
