@@ -1,95 +1,88 @@
 # VCDesign (VCD) Core
+**Value Continuity Design**
 
-VCDesign (VCD) stands for **Value Continuity Design**.
+> **A design core for continuously delivering value in a world where creation ends in an instant**
 
-VCDesign is a design principle for sustaining value over time  
-in systems where operation continues, context changes,  
-and judgment cannot be fully automated.
+VCDesign (VCD) is a design philosophy (and implementation ecosystem) for sustaining value over time in systems where operation continues, context changes, and judgment cannot be fully automated.
 
 VCDesign does not aim to optimize delivery.  
 It exists to prevent value erosion after delivery.
 
-For the reasoning behind VCDesign Core, see  
-➡️ [PHILOSOPHY.md](./PHILOSOPHY.md)
+---
+
+## Why VCDesign Now
+
+### Always-on Rapid Optimization
+With generative AI and automation technologies, systems have entered a world where "improvements are endless, free, and instantaneous."  
+In this environment, optimization never stops, and no one bears "responsibility to halt" the process.
+
+### Decision Boundaries
+When automation proceeds with ambiguous ownership—"Who made this decision?" "Where does responsibility lie?"—value breaks even though the system keeps running.  
+VCDesign explicitly designs the **boundaries where decisions become final**.
+
+For detailed background philosophy, see:  
+➡️ [docs/philosophy/PHILOSOPHY.md](./docs/philosophy/PHILOSOPHY.md)
 
 ---
 
-## What VCDesign Is
+## Core Architecture (The Ecosystem)
 
-VCDesign is a design core that focuses on:
+VCDesign Core is not merely a philosophy, but an ecosystem composed of three layers:
 
-### **Value Continuity**  
-Ensuring that value does not disappear as systems evolve
+### 1. 🛡️ Constitution (Constitution and Priorities)
 
-### **Judgment Placement**  
-Making explicit where human judgment must remain
+We define **Lexicographic Order** as a decision-making structure—not calculating trade-offs each time, but deciding by structure.  
+Upper boundaries must never be violated for optimization at lower levels.
 
-### **Boundary Declaration**  
-Defining where meaning, responsibility, and automation must stop
+1. 🔴 **SAFETY (Safety, Human Life)** [Hard Constraint]
+2. 🔴 **COMPLIANCE (Legal, Regulatory)** [Hard Constraint]
+3. 🔴 **TRUST (Trust, Auditability)** [Hard Constraint]
+4. 🔴 **ETHICS (Ethics, Fairness)** [Hard Constraint]
+5. 🟡 **BUSINESS_VIABILITY (Business Viability)** [Soft Constraint]
+6. 🟢 **KPI / EFFICIENCY (Efficiency)** [Soft Constraint]
 
-### **Survivability Under Change**  
-Designing systems that remain valid as context inevitably shifts
+> **Note:** KPI is always placed at the bottom and must pass through all upper filters.
 
-VCDesign applies to socio-technical systems where:
+*Reference: [policies/boundary-lexicographic-policy.md](./policies/boundary-lexicographic-policy.md)*
 
-- projects end, but systems remain  
-- operation cannot be controlled  
-- meaning drifts across time and organizations  
-- responsibility must stay explicit  
+### 2. 🔌 Domain Bindings (Domain Bindings)
 
----
+A collection of definition files for adapting the generic Core to specific business domains.  
+Each binding specifies "what is Fact (immutable truth)" and "what is Hypothesis (interpretation)."
 
-## What VCDesign Is Not
+| Binding ID | Domain | Characteristics / Fact Definition |
+| :--- | :--- | :--- |
+| **analytics_llm** | Analytics & General Use | Basic form. AI output is always "hypothesis"; humans handle "resolution." |
+| **finance** | Finance | Ledger is the authority. Fund movements require strict audit trails and accountable parties. |
+| **healthcare** | Healthcare | Clinical records are fact. AI diagnosis is prohibited; physician signatures are mandatory. |
+| **legal** | Legal | Documents and statutes are fact. Legal advice requires citations and attorney review. |
+| **factory** | Manufacturing (OT/IT) | Physical sensor values are fact. IT control signals must cross safety boundaries. |
+| **public_sector** | Public Sector | Public records are fact. Due process and transparency take precedence over optimization. |
+| **enterprise_decision** | Business Strategy | Actual performance data is fact. Strategic decisions are treated as "commitment by accountable actors." |
 
-VCDesign does not provide:
+*Reference: [bindings/](./bindings/)*
 
-- implementations or templates  
-- reference architectures  
-- best practices or checklists  
-- product comparisons  
-- automated decision logic  
+### 3. ⚖️ Policy Evaluator (Reference Implementation)
 
-VCDesign is intentionally silent about how to build.  
-It exists to clarify what must not be lost.
+A tool that mechanically judges whether proposed changes (Proposal) violate the defined constitution (Policy).  
+Functions as a guardrail for CI/CD pipelines and AI agents.
 
-> **Note:**  
-> VCDesign intentionally provides **no implementation**.  
-> This is not a limitation but a design choice:  
-> implementation would distort the judgment boundaries VCDesign exists to protect.  
->  
-> A community *may* form around understanding and applying the principle,  
-> but VCDesign itself will never include implementation.
-
----
-
-## Core Principles (Immutable)
-
-VCDesign is built on irreversible principles:
-
-- **Value must be continuous**  
-- **Facts are immutable**  
-- **Interpretation is provisional**  
-- **Responsibility must be explicit**  
-- **Boundaries are where systems fail**  
-
-These principles do not evolve.  
-Derived methods may.
+* **Input:** Proposal (JSON), Policy (YAML/JSON)
+* **Output:** `ALLOW` / `REVIEW` / `DENY` and violation reason
+* *Reference: [tools/policy-evaluator/](./tools/policy-evaluator/)*
 
 ---
 
-## Relationship to BOA
+## Conceptual Foundation (The Manifesto)
 
-VCDesign defines why value must be protected  
-and where judgment must remain human.
+VCDesign redefines the "unit" and "role" in engineering.
 
-BOA (Boundary-Oriented Architecture) is a construction method that:
-
-- translates VCDesign judgments into system structure  
-- preserves boundaries during implementation  
-- prevents responsibility and meaning from collapsing  
-
-VCDesign decides what must be sustained.  
-BOA defines how to construct without breaking it.
+* **Chapter**
+  Rather than phases or versions, we manage "sets of judgment and responsibility." Value is handed across chapters.
+* **Operation**
+  Not mere maintenance, but creative practice of "re-adopting" past judgments in present reality (or returning responsibility).
+* **The Continuer**
+  Neither Builder (who creates) nor Operator (who runs), but a new engineer who keeps judgment and responsibility connected without breaking value.
 
 ---
 
@@ -97,52 +90,33 @@ BOA defines how to construct without breaking it.
 
 This repository contains the immutable core of VCDesign.
 
-It is designed to be:
+### 1. Context Injection for AI
+Inject `constitution/` and `bindings/` into generative AI conducting design review or code generation, instructing it to act as "The Continuer."
 
-- loaded into Generative AI as a reasoning constraint  
-- used for architecture review and boundary validation  
-- shared as a design contract across teams  
+### 2. Baseline for Architecture Review
+Use as a checklist for humans designing systems, and as a foundation for consensus-building (Design Contract) across teams.
 
-It is intentionally not optimized for linear human reading.
-
-VCDesign encodes:
-
-- implicit design constraints  
-- non-obvious boundary rules  
-- trade-offs usually carried only in engineers’ heads  
-
-AI can reason over these structures  
-more reliably than humans reading prose.
+### 3. Automatic Guardrail (Policy Evaluator)
+Pass proposals generated by AI agents or automation scripts through `evaluator.py` to automatically verify they don't violate the constitution.
 
 ---
 
-## What This Repository Is Not
+## Directory Structure
 
-❌ A framework  
-❌ A tutorial  
-❌ A checklist  
-❌ A system that produces “correct answers”  
-
-VCDesign does not decide for you.  
-It makes trade-offs explicit so that value is not lost silently.
+```
+├── bindings/       # Domain-specific adaptation rules (YAML/README)
+├── constitution/   # Core value judgment criteria and priorities (YAML/Markdown)
+├── docs/           # Philosophy, manifesto, diagnostic guides
+├── examples/       # Concrete JSON examples of proposals
+├── policies/       # Policy Evaluator policy definitions
+├── prompts/        # Example prompts for LLMs
+└── tools/          # Policy Evaluator (reference implementation)
+```
 
 ---
 
-## Scope Limitations
+## Status
 
-VCDesign deliberately does not model:
+**Version:** 2.0 (Canonical)
 
-- time-varying human judgment  
-- organizational behavior  
-- business processes  
-- domain-specific meaning  
-
-These are contextual and human responsibilities.
-
-VCDesign exists to ensure that  
-value does not disappear when these inevitably change.
-
-VCDesign deliberately does **not** model or control certain domains.  
-These exclusions are part of the design, not omissions.
-
-See: [docs/companion/scope_exclusions.yaml](./docs/scope_exclusions.yaml)
+**Phase Diagnosis:** To understand what phase your organization is in, see Phase Diagnosis.
