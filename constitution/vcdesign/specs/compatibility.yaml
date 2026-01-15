@@ -1,0 +1,21 @@
+recognized_constitutions:
+  engagement_maximization:
+    priority:
+      - maximize_time_spent
+      - predict_desire
+    compatibility: incompatible
+    reason: conflicts_with_decision_closure
+
+  accelerationism:
+    priority:
+      - evolution
+      - disruption
+    compatibility: incompatible
+    reason: breaks_value_continuity
+
+  cost_cutter:
+    priority:
+      - minimize_cost
+      - speed
+    compatibility: conditional
+    reason: acceptable_only_if_human_margin_preserved

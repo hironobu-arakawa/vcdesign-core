@@ -1,0 +1,4 @@
+history:
+  - date: 2026-01
+    trigger: autoplay_recommendation_conflict
+    added_incompatibility: engagement_maximization
