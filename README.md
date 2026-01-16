@@ -1,123 +1,135 @@
-# VCDesign (VCD) Core
-**Value Continuity Design**
+# VCDesign Core
+— Value Continuity Design —
 
-> **A design core for continuously delivering value in a world where creation ends in an instant**
+VCDesign is not a design philosophy for "building systems correctly."
 
-VCDesign (VCD) is a design philosophy (and implementation ecosystem) for sustaining value over time in systems where operation continues, context changes, and judgment cannot be fully automated.
-
-VCDesign does not aim to optimize delivery.  
-It exists to prevent value erosion after delivery.
-
-**Official Website:** [vcdesign.org](https://vcdesign.org/)
----
-
-## Why VCDesign Now
-
-### Always-on Rapid Optimization
-With generative AI and automation technologies, systems have entered a world where "improvements are endless, free, and instantaneous."  
-In this environment, optimization never stops, and no one bears "responsibility to halt" the process.
-
-### Decision Boundaries
-When automation proceeds with ambiguous ownership—"Who made this decision?" "Where does responsibility lie?"—value breaks even though the system keeps running.  
-VCDesign explicitly designs the **boundaries where decisions become final**.
-
-For detailed background philosophy, see:  
-➡️ [docs/philosophy/PHILOSOPHY.md](./docs/philosophy/PHILOSOPHY.md)
+It is a **design core that ensures judgment and responsibility  
+continue to be passed forward without severance**, even after creation.
 
 ---
 
-## Core Architecture (The Ecosystem)
+## What Is This
 
-VCDesign Core is not merely a philosophy, but an ecosystem composed of three layers:
+This repository contains  
+**the immutable core** of VCDesign.
 
-### 1. 🛡️ Constitution (Constitution and Priorities)
+- Where judgment can legitimately be made  
+- How far responsibility can be taken on  
+- How to pass it forward to the next phase  
 
-We define **Lexicographic Order** as a decision-making structure—not calculating trade-offs each time, but deciding by structure.  
-Upper boundaries must never be violated for optimization at lower levels.
-
-1. 🔴 **SAFETY (Safety, Human Life)** [Hard Constraint]
-2. 🔴 **COMPLIANCE (Legal, Regulatory)** [Hard Constraint]
-3. 🔴 **TRUST (Trust, Auditability)** [Hard Constraint]
-4. 🔴 **ETHICS (Ethics, Fairness)** [Hard Constraint]
-5. 🟡 **BUSINESS_VIABILITY (Business Viability)** [Soft Constraint]
-6. 🟢 **KPI / EFFICIENCY (Efficiency)** [Soft Constraint]
-
-> **Note:** KPI is always placed at the bottom and must pass through all upper filters.
-
-*Reference: [policies/boundary-lexicographic-policy.md](./policies/boundary-lexicographic-policy.md)*
-
-### 2. 🔌 Domain Bindings (Domain Bindings)
-
-A collection of definition files for adapting the generic Core to specific business domains.  
-Each binding specifies "what is Fact (immutable truth)" and "what is Hypothesis (interpretation)."
-
-| Binding ID | Domain | Characteristics / Fact Definition |
-| :--- | :--- | :--- |
-| **analytics_llm** | Analytics & General Use | Basic form. AI output is always "hypothesis"; humans handle "resolution." |
-| **finance** | Finance | Ledger is the authority. Fund movements require strict audit trails and accountable parties. |
-| **healthcare** | Healthcare | Clinical records are fact. AI diagnosis is prohibited; physician signatures are mandatory. |
-| **legal** | Legal | Documents and statutes are fact. Legal advice requires citations and attorney review. |
-| **factory** | Manufacturing (OT/IT) | Physical sensor values are fact. IT control signals must cross safety boundaries. |
-| **public_sector** | Public Sector | Public records are fact. Due process and transparency take precedence over optimization. |
-| **enterprise_decision** | Business Strategy | Actual performance data is fact. Strategic decisions are treated as "commitment by accountable actors." |
-
-*Reference: [bindings/](./bindings/)*
-
-### 3. ⚖️ Policy Evaluator (Reference Implementation)
-
-A tool that mechanically judges whether proposed changes (Proposal) violate the defined constitution (Policy).  
-Functions as a guardrail for CI/CD pipelines and AI agents.
-
-* **Input:** Proposal (JSON), Policy (YAML/JSON)
-* **Output:** `ALLOW` / `REVIEW` / `DENY` and violation reason
-* *Reference: [tools/policy-evaluator/](./tools/policy-evaluator/)*
+These are treated as  
+**structure, not philosophy**.
 
 ---
 
-## Conceptual Foundation (The Manifesto)
+## What to Read First
 
-VCDesign redefines the "unit" and "role" in engineering.
+In VCDesign,  
+the order of reading itself is part of the design.
 
-* **Chapter**
-  Rather than phases or versions, we manage "sets of judgment and responsibility." Value is handed across chapters.
-* **Operation**
-  Not mere maintenance, but creative practice of "re-adopting" past judgments in present reality (or returning responsibility).
-* **The Continuer**
-  Neither Builder (who creates) nor Operator (who runs), but a new engineer who keeps judgment and responsibility connected without breaking value.
+### 1. Constitution (Highest Level / Non-Negotiable)
 
----
+In VCDesign,  
+there is no judgment criterion placed above this.
 
-## How This Repository Is Used
-
-This repository contains the immutable core of VCDesign.
-
-### 1. Context Injection for AI
-Inject `constitution/` and `bindings/` into generative AI conducting design review or code generation, instructing it to act as "The Continuer."
-
-### 2. Baseline for Architecture Review
-Use as a checklist for humans designing systems, and as a foundation for consensus-building (Design Contract) across teams.
-
-### 3. Automatic Guardrail (Policy Evaluator)
-Pass proposals generated by AI agents or automation scripts through `evaluator.py` to automatically verify they don't violate the constitution.
+/constitution/constitution.md
 
 ---
 
-## Directory Structure
+### 2. PHILOSOPHY (Why It Exists)
 
-```
-├── bindings/       # Domain-specific adaptation rules (YAML/README)
-├── constitution/   # Core value judgment criteria and priorities (YAML/Markdown)
-├── docs/           # Philosophy, manifesto, diagnostic guides
-├── examples/       # Concrete JSON examples of proposals
-├── policies/       # Policy Evaluator policy definitions
-├── prompts/        # Example prompts for LLMs
-└── tools/          # Policy Evaluator (reference implementation)
-```
+The reasons VCDesign was created,  
+the observed problems,  
+and the unavoidable premises.
+
+/docs/philosophy/PHILOSOPHY.md
 
 ---
 
-## Status
+### 3. MANIFESTO (Declaration of Design Attitude)
 
-**Version:** 2.0 (Canonical)
+We declare  
+"what we do" and "what we do not do."
 
-**Phase Diagnosis:** To understand what phase your organization is in, see Phase Diagnosis.
+/docs/manifest/MANIFESTO.md
+
+---
+
+## To Deeply Understand the Concepts
+
+VCDesign concepts are explained  
+through narrative.
+
+- Why the unit of "chapter" was needed  
+- Why we needed to redefine "operation"  
+- Who takes it on  
+
+/docs/narrative/
+├─ PRELUDE.md
+├─ CHAPTER.md
+├─ OPERATION.md
+└─ THE_CONTINUER.md
+
+---
+
+## What This Is Not
+
+This repository is:
+
+- Not a collection of best practices  
+- Not a set of implementation templates  
+- Not a mechanism for delegating judgment to AI  
+
+VCDesign is  
+**a design core for not omitting judgment**.
+
+---
+
+## Relationship with Implementation and Operations
+
+VCDesign does not  
+replace implementation.
+
+- It does not dictate language  
+- It does not enforce frameworks  
+- It does not presume organizational structure  
+
+Instead, it demands that  
+even as implementation and operations change,  
+**the position of judgment and responsibility does not degrade**.
+
+---
+
+## Our Relationship with AI
+
+AI can assist with interpretation.  
+But it cannot bear the responsibility of judgment.
+
+VCDesign achieves safety  
+by not letting AI make judgments.
+
+AI is treated as  
+a presence that illuminates the premises for valid judgment.
+
+---
+
+## Intended Readers
+
+This repository exists for people like:
+
+- Those who sense something wrong with systems after they are built  
+- Those who want to consider sustainability rather than correctness  
+- Those who feel a void in judgment when adopting automation and AI  
+
+---
+
+## Positioning
+
+- Constitution: Highest-level premise  
+- PHILOSOPHY: Reason for existence  
+- MANIFESTO: Design attitude  
+- Narrative: Explanation of concepts  
+- Tools / Implementation: Examples of application  
+
+This README is the  
+**entry point** to all of them.

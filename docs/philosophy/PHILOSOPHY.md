@@ -1,149 +1,186 @@
 # PHILOSOPHY
+— Why VCDesign Exists —
 
-VCDesign (VCD) stands for **Value Continuity Design**.
+VCDesign (Value Continuity Design) is not a philosophy about how to "create" value.
 
----
-
-## Why VCDesign Core Exists
-
-### Why this document exists
-
-This document explains why vcdesign-core exists,  
-not how to use it.
-
-If you are looking for usage instructions, examples, or tutorials,  
-this is not the right place.
-
-This document exists to clarify the thinking boundary behind the Core.
+What VCDesign addresses is  
+**the conditions for value to be passed forward without loss**.
 
 ---
 
-## The problem VCDesign addresses
+## About This Document
 
-In systems that continue operating after deployment,  
-a recurring problem appears regardless of domain or technology.
+This document is intended to explain  
+"why" VCDesign exists.
 
-Decisions are made.
+- It does not explain how to use it  
+- It does not justify implementation  
+- It does not attempt to persuade readers  
 
-But later, no one can clearly answer:
-
-- who made the decision  
-- under what assumptions it was made  
-- where responsibility begins and ends  
-
-This is rarely caused by lack of skill or effort.
-
-It happens because decisions are not treated as design artifacts.
-
-They disappear into documents, meetings, or tacit understanding.
+What is written here are only  
+VCDesign's **observations and premises**  
+that led to its creation.
 
 ---
 
-## What was observed
+## The Observed Problem
 
-VCDesign did not start from theory.
+In systems that continue to operate,  
+the same problems appear repeatedly, regardless of domain or technology.
 
-It started from observing environments where:
+Decisions are made.  
+But over time, no one can answer:
 
-- decisions could not be easily rolled back  
-- mistakes could not be corrected later by patches or retries  
-- responsibility had to remain clear over time  
+- Why was that judgment made?  
+- Under what premises did it hold true?  
+- Who took responsibility for it?  
 
-From these observations, one pattern kept repeating.
+This was not caused by lack of effort or ability.  
+**Decisions themselves were not treated as design artifacts**.
 
-Some decision structures survived operation.  
-Others did not.
-
----
-
-## The core insight
-
-This approach is the result of observing environments  
-where failures cannot be easily corrected afterward,  
-and separating what worked from what did not.
-
-What survived shared a common trait:
-
-They made decision boundaries explicit.
-
-Not as process rules.  
-Not as organizational policy.  
-But as part of the system’s design itself.
+Decisions dissolve  
+into meetings, chats, and tacit understanding,  
+eventually becoming no one's decision.
 
 ---
 
-## What VCDesign does (and does not do)
+## The Premise of Continuous Fast Optimization
 
-VCDesign does not attempt to:
+With advances in generative AI and automation technology,  
+we can no longer avoid the following premise:
 
-- define correct decisions  
-- automate responsibility  
-- optimize outcomes  
+- Implementation will be continuously updated indefinitely  
+- The marginal cost of improvement approaches zero  
+- Trial and error is immediately reflected in reality  
 
-Instead, it focuses on one thing only:
+Completion becomes a starting point, not an endpoint.
 
-**Designing where decisions are allowed to become final.**
+In this environment,  
+**"can we build it?" becomes less important than "should we update it?"**
 
-Everything else follows from that.
-
----
-
-## Why the Core is machine-readable
-
-Human discussions are good at exploring possibilities.  
-They are bad at preserving boundaries over time.
-
-VCDesign Core is expressed as a machine-readable specification  
-so that decision boundaries can:
-
-- remain stable  
-- be reviewed consistently  
-- be reasoned over by both humans and AI  
-
-This is not an implementation detail.  
-It is a design choice.
+Optimization does not stop.  
+If we don't stop it, it continues.
 
 ---
 
-## Relationship to AI
+## The Danger of Undesigned Boundaries
 
-AI systems are good at proposing interpretations.  
-They are not suited to owning consequences.
+In an environment of continuous fast optimization,  
+systems without designed boundaries inevitably reach this state:
 
-VCDesign does not try to make AI “safer” by restricting it.
+- No one holds the responsibility to "stop"  
+- Short-term rationality erodes long-term trust  
+- The grounds for rightness are absorbed into numbers and results  
 
-It makes AI safer by **never allowing it to decide where responsibility begins.**
+The system is running.  
+Yet **value is quietly being lost**.
+
+What breaks at this point is not  
+code or features.
+
+**The conditions for judgment to be valid**.
 
 ---
 
-## What follows from this philosophy
+## VCDesign's Position
 
-From this philosophy emerge:
+VCDesign does not:
 
-- the separation of Fact, Hypothesis, and Resolution  
-- the distinction between Core and Bindings  
-- the refusal to treat operational judgment as configuration  
+- Define correct judgment  
+- Automate responsibility  
+- Dictate the direction of optimization  
+
+Instead, it designs  
+**where judgment can legitimately become final**.
+
+Nothing more.  
+Nothing less.
+
+---
+
+## The Shift in What We Design
+
+What VCDesign designs for is not:
+
+- Features  
+- Flows  
+- Optimization algorithms  
+
+**Where judgment and responsibility can be taken on**.
+
+Judgment appears  
+in places that cannot be easily corrected afterward.
+
+Therefore,  
+judgment must be treated not as "results" but as "design".
+
+---
+
+## Why Machine-Readable
+
+Humans excel at discussion and consensus-building.  
+But they struggle to maintain boundaries across time.
+
+VCDesign Core is expressed in machine-readable form  
+not for implementation.
+
+Rather, to:
+
+- Fix boundaries in place  
+- Prevent the degradation of judgment conditions  
+- Ensure humans and AI reference the same premise  
+
+This is a design choice.
+
+---
+
+## Our Relationship with AI
+
+AI can generate interpretations.  
+But it cannot bear responsibility for results.
+
+VCDesign does not  
+seek safety by controlling AI.
+
+**It achieves safety by not letting AI decide  
+where responsibility begins**.
+
+AI is not a proxy for judgment.  
+It is a presence that illuminates the premises for valid judgment.
+
+---
+
+## What This Philosophy Yields
+
+From this philosophy, the following structures emerge:
+
+- Separation of Fact / Hypothesis / Resolution  
+- Separation of Core and Binding  
+- Refusal to treat operational judgment as configuration  
 
 These are not features.  
-They are constraints.
+**They are non-negotiable constraints**.
 
 ---
 
-## Final note
+## In Conclusion
 
-If this philosophy feels strict,  
-it is because it was formed in places where looseness did not survive.
+If this philosophy seems strict,  
+it is because looseness did not survive where it was born.
 
-VCDesign Core exists to preserve those constraints  
-even when systems grow, teams change,  
-and decisions are revisited years later.
+VCDesign is not a philosophy for stopping change.
 
-> This document explains why VCDesign Core exists.  
-> It does not describe how to use it.
+It is a philosophy for preserving  
+the conditions under which value does not break  
+in the midst of change.
 
 ---
 
-This document describes the philosophy behind VCDesign Core.
+## Positioning
 
-The Core itself is defined and maintained in this repository.  
-For usage and structure, return to [README.md](./README.md).
+- Above: VCDesign Constitution  
+- This Document: Reason for Existence (Why)  
+- Below: Manifesto / Narrative / Tools  
+
+This document records  
+**why VCDesign could not but exist**.
