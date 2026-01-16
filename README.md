@@ -136,6 +136,13 @@ This README is the
 
 ---
 
+## Research
+
+For independent research and third-party evaluations of VCDesign,
+see the `/research` directory.
+
+---
+
 ## Context
 
 This repository is part of a broader design philosophy exploring
