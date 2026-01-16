@@ -133,3 +133,17 @@ This repository exists for people like:
 
 This README is the  
 **entry point** to all of them.
+
+---
+
+## Context
+
+This repository is part of a broader design philosophy exploring
+how responsibility, boundaries, and decision-making should be handled
+in AI-assisted systems.
+
+- VCDesign (design philosophy & architecture):
+  https://vcdesign.org/
+
+This project can be used independently.
+Understanding VCDesign is not required.
