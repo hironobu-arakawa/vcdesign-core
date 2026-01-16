@@ -141,6 +141,12 @@ This README is the
 For independent research and third-party evaluations of VCDesign,
 see the `/research` directory.
 
+VCDesign does not optimize for fixed KPIs.
+Instead, it provides structures that make
+value and responsibility observable over time.
+
+Some example metrics are discussed in `/research`.
+
 ---
 
 ## Context

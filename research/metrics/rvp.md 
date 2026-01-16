@@ -1,0 +1,11 @@
+## RBP: Responsibility Boundary Permeability
+
+RBP measures how often changes in AI-generated logic
+require changes in responsibility-bound code.
+
+In a well-designed BOA system:
+- Meaning is volatile
+- Responsibility is stable
+
+An RBP close to zero indicates that AI-driven iteration
+does not erode human responsibility boundaries.
