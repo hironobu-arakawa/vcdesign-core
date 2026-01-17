@@ -74,12 +74,3 @@ If these are mistaken, the system may not break, but the value will break.
 
 Therefore, VCDesign says:
 Operation is the creative act that arrives latest.
-
-## To the Next
-
-Up to this point, we have realized.
-- If Chapter is the unit that hands over value,
-- Operation is the act of continuing to hand it over.
-
-Then, who takes up that act?
-In the next chapter, we will deal with the role of the new engineer, who is neither a "Builder" nor an "Operator."
