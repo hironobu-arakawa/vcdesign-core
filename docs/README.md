@@ -1,8 +1,9 @@
 # docs/
 
-This directory contains the conceptual documents of VCDesign.
+This directory contains conceptual documentation for VCDesign.
 
 Start here:
-- /philosophy/PHILOSOPHY.md
-- /manifest/MANIFESTO.md
-- /narrative/
+- architecture/continuity-claim.md
+- philosophy/PHILOSOPHY.md
+- manifest/MANIFESTO.md
+- narrative/
