@@ -338,3 +338,19 @@ The condition where irreversible harm is structurally prevented, not statistical
 Loss of value continuity, regardless of system operability.
 
 ---
+
+## About Language Usage in This Glossary
+
+In this glossary, the Japanese and English versions are **not translations** of each other.
+
+- Each language version is an **independent definition set**
+  optimized for its own design, thinking, and discussion context
+- Exact semantic equivalence is not guaranteed
+- Terms may correspond across languages, but they are not "translations"
+
+In VCDesign, language is treated not merely as a medium of expression,
+but as **part of the design boundary itself**.
+
+Accordingly:
+- English definitions tend to emphasize structure, protocol, and abstraction
+- Japanese definitions tend to emphasize design attitude, context, and lived understanding
