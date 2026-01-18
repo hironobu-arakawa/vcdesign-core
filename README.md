@@ -102,6 +102,28 @@ even as implementation and operations change,
 
 ---
 
+## About Language and Concept Boundaries
+
+In VCDesign,  
+language is treated not merely as a translation medium, but as **a design boundary**.
+
+Specifically, Japanese and English versions  
+are **not in a translation relationship**, even when handling the same concepts.
+
+- English carries structure, protocol, and abstraction  
+- Japanese carries design attitude, context, and the weight of judgment  
+
+This asymmetry is not a deficiency,  
+but **an intended design**.
+
+For concepts that exist only in Japanese  
+or design attitudes that cannot be directly translated into English,  
+they are explicitly organized in the following document:
+
+/docs/language-boundaries.ja.md
+
+---
+
 ## Our Relationship with AI
 
 AI can assist with interpretation.  
