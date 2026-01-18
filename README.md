@@ -13,6 +13,8 @@ continue to be passed forward without severance**, even after creation.
 This repository contains  
 **the immutable core** of VCDesign.
 
+*The authoritative source for VCDesign is defined in `/specs/vcdesign_core.yaml`.*
+
 - Where judgment can legitimately be made  
 - How far responsibility can be taken on  
 - How to pass it forward to the next phase  

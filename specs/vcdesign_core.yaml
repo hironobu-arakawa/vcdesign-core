@@ -1,0 +1,138 @@
+vcdesign_core:
+  name: "VCDesign Core"
+  full_name: "Value Continuity Design"
+  version: "1.0.0"
+  status: "frozen"
+
+  intent:
+    description: >
+      VCDesign is not a method for producing correct systems.
+      It is a design core to ensure that judgment and responsibility
+      are continuously handed over across time, without silent breaks.
+
+    non_goals:
+      - define_correct_answers
+      - optimize_outcomes
+      - automate_responsibility
+      - replace_human_judgment
+
+  temporal_premise:
+    description: >
+      Software systems have two distinct times:
+      the production period and the usage period.
+      As production becomes automated,
+      the continuity of value during the usage period
+      becomes the primary design concern.
+
+    authoritative_document:
+      path: "/prelude/prelude.md"
+      role: "environmental premise"
+      mutable: false
+
+  constitutional_layer:
+    description: >
+      Non-negotiable constraints that define
+      how judgment and responsibility may be handled.
+
+    authoritative_document:
+      path: "/constitution/constitution.md"
+      role: "supreme constraints"
+      mutable: false
+
+  philosophy_layer:
+    description: >
+      Observations and unavoidable premises
+      that made VCDesign necessary.
+
+    authoritative_document:
+      path: "/philosophy/PHILOSOPHY.md"
+      role: "existential justification"
+      mutable: false
+
+  manifesto_layer:
+    description: >
+      Declaration of behavioral stance
+      for those who choose to live within this design world.
+
+    authoritative_document:
+      path: "/manifesto/MANIFESTO.md"
+      role: "behavioral commitment"
+      mutable: false
+
+  narrative_layer:
+    description: >
+      Supporting narratives to help humans
+      internalize the concepts and roles of VCDesign.
+      These documents do not introduce constraints.
+
+    documents:
+      - path: "/narrative/chapter.md"
+        role: "structural metaphor"
+      - path: "/narrative/operation.md"
+        role: "operational perspective"
+      - path: "/narrative/the-continuer.md"
+        role: "role embodiment"
+
+    constraints_authority: false
+
+  architectural_extensions:
+    description: >
+      Structural patterns derived from VCDesign,
+      which must not violate the core constraints.
+
+    documents:
+      - path: "/architecture/responsibility-pools.md"
+        role: "responsibility structure"
+
+    governed_by:
+      - constitutional_layer
+      - philosophy_layer
+      - manifesto_layer
+
+  machine_readability:
+    purpose:
+      - fix_reference_points
+      - prevent_semantic_drift
+      - align_human_and_ai_assumptions
+
+    explicitly_not_for:
+      - execution
+      - optimization
+      - autonomous_decision_making
+
+  authority_rules:
+    precedence_order:
+      - temporal_premise
+      - constitutional_layer
+      - philosophy_layer
+      - manifesto_layer
+      - architectural_extensions
+      - narrative_layer
+
+    conflict_resolution:
+      rule: >
+        If any document conflicts with a higher-precedence layer,
+        the higher-precedence layer always prevails.
+        No automatic resolution is permitted.
+
+  closure:
+    statement: >
+      VCDesign Core defines the immutable reference points
+      for judgment and responsibility across time.
+      Anything not explicitly defined here
+      is intentionally left to human judgment.
+      
+  architectural_extensions:
+    description: >
+      Structural patterns derived from VCDesign,
+      which must not violate the core constraints.
+
+    known_implementations:
+      - name: "BOA (Boundary-Oriented Architecture)"
+        repository: "https://github.com/VCDesign-org/boa-core"
+        includes:
+          - "Resolution Protocol (RP)"
+          - "Interface Determinability Gate (IDG)"
+        note: >
+          BOA is a reference implementation.
+          Adoption of BOA is not required to use VCDesign.

@@ -14,6 +14,9 @@ VCDesign は、
 このリポジトリには、  
 VCDesign における **不変のコア** が含まれています。
 
+※ VCDesign における最終的な参照点（authoritative source）は
+`/specs/vcdesign_core.yaml` に定義されています。
+
 - 判断をどこで成立させてよいか  
 - 責任をどこまで引き受けるか  
 - それを、次にどう渡せる状態にするか  
