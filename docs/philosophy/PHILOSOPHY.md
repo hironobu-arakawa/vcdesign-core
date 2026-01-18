@@ -1,186 +1,184 @@
 # PHILOSOPHY
-— Why VCDesign Exists —
+— Reason for VCDesign's Existence —
 
-VCDesign (Value Continuity Design) is not a philosophy about how to "create" value.
+VCDesign (Value Continuity Design) is not  
+a philosophy dealing with how to "create" value.
 
-What VCDesign addresses is  
-**the conditions for value to be passed forward without loss**.
+What VCDesign deals with is  
+**the condition for the time during which value continues to be demonstrated not to be severed midway.**
+
+This is not a philosophy born from ideals.  
+It was born from observations that could not be avoided.
 
 ---
 
-## About This Document
+## About this Document
 
-This document is intended to explain  
-"why" VCDesign exists.
+This document records  
+"why VCDesign had to exist."
 
 - It does not explain how to use it  
 - It does not justify implementation  
-- It does not attempt to persuade readers  
+- It does not try to persuade the reader  
 
-What is written here are only  
-VCDesign's **observations and premises**  
-that led to its creation.
+What is written here is only  
+**the preconditions and their consequences**  
+observed repeatedly in the field of design and operation.
 
 ---
 
-## The Observed Problem
+## Observed Severance
 
-In systems that continue to operate,  
-the same problems appear repeatedly, regardless of domain or technology.
+In systems where operation continues,  
+regardless of domain or technology, the same phenomenon appeared repeatedly.
 
-Decisions are made.  
-But over time, no one can answer:
+Judgments are made.  
+However, as time passes, no one can answer anymore.
 
 - Why was that judgment made?  
-- Under what premises did it hold true?  
-- Who took responsibility for it?  
+- Under what premises was it valid?  
+- Who was taking responsibility for it?  
 
-This was not caused by lack of effort or ability.  
-**Decisions themselves were not treated as design artifacts**.
+This was not caused by a lack of effort or ability.
 
-Decisions dissolve  
-into meetings, chats, and tacit understanding,  
-eventually becoming no one's decision.
+It was caused by the fact that  
+**judgment itself was not treated  
+as a design object to be inherited across time.**
+
+Judgment dissolves into  
+meetings, chats, and tacit understandings,  
+and eventually becomes no one's.
+
+The system keeps moving.  
+However, value was quietly lost.
 
 ---
 
-## The Premise of Continuous Fast Optimization
+## The Premise of Constant Updates
 
-With advances in generative AI and automation technology,  
-we can no longer avoid the following premise:
+With the progress of automation and generative technology,  
+systems can no longer escape the following premises:
 
-- Implementation will be continuously updated indefinitely  
-- The marginal cost of improvement approaches zero  
+- Implementations continue to be updated  
+- The marginal cost of improvement drops indefinitely  
 - Trial and error is immediately reflected in reality  
 
-Completion becomes a starting point, not an endpoint.
+Completion is not the end point,  
+but became the starting point of operation.
 
 In this environment,  
-**"can we build it?" becomes less important than "should we update it?"**
+**"Is it okay to update?" rather than "Can we build it?"**  
+becomes the center of judgment.
 
 Optimization does not stop.  
-If we don't stop it, it continues.
+If not stopped, it keeps advancing.
 
 ---
 
-## The Danger of Undesigned Boundaries
+## The Fact that Boundaries are Not Designed
 
-In an environment of continuous fast optimization,  
-systems without designed boundaries inevitably reach this state:
+In an environment where updates are the premise,  
+systems where boundaries are not designed  
+inevitably fall into the same state.
 
-- No one holds the responsibility to "stop"  
+- No one has the responsibility to stop  
 - Short-term rationality erodes long-term trust  
-- The grounds for rightness are absorbed into numbers and results  
+- The basis of correctness is absorbed by results and numbers  
 
-The system is running.  
-Yet **value is quietly being lost**.
+What is broken at this time is  
+neither code nor function.
 
-What breaks at this point is not  
-code or features.
-
-**The conditions for judgment to be valid**.
+It is **the condition under which judgment is allowed to be valid.**
 
 ---
 
-## VCDesign's Position
+## VCDesign's Stance
 
-VCDesign does not:
+VCDesign:
 
-- Define correct judgment  
-- Automate responsibility  
-- Dictate the direction of optimization  
+- Does not define correct judgment  
+- Does not automate responsibility  
+- Does not give directions for optimization  
 
-Instead, it designs  
-**where judgment can legitimately become final**.
+Instead,  
+it designs **the place where judgment is allowed to validly stand as final.**
 
-Nothing more.  
-Nothing less.
-
----
-
-## The Shift in What We Design
-
-What VCDesign designs for is not:
-
-- Features  
-- Flows  
-- Optimization algorithms  
-
-**Where judgment and responsibility can be taken on**.
-
-Judgment appears  
-in places that cannot be easily corrected afterward.
-
-Therefore,  
-judgment must be treated not as "results" but as "design".
+It does nothing more.  
+It does nothing less.
 
 ---
 
-## Why Machine-Readable
+## Shift of Design Object
 
-Humans excel at discussion and consensus-building.  
-But they struggle to maintain boundaries across time.
+What VCDesign takes as its design object is:
+
+- Not functions  
+- Not flows  
+- Not optimization algorithms  
+
+It is **where judgment and responsibility are taken.**
+
+Judgment appears in places  
+that cannot be easily corrected later.
+
+That is why  
+judgment must be treated not as a "result"  
+but as a **design that spans across time.**
+
+---
+
+## Reason for Being Machine-Readable
+
+Humans are  
+excellent at consensus building and discussion.
+
+However,  
+they are poor at maintaining boundaries across time.
 
 VCDesign Core is expressed in machine-readable form  
 not for implementation.
 
-Rather, to:
-
-- Fix boundaries in place  
-- Prevent the degradation of judgment conditions  
-- Ensure humans and AI reference the same premise  
+- To fix judgment conditions  
+- To prevent boundaries from deteriorating  
+- So that humans and systems refer to the same premises  
 
 This is a design choice.
 
 ---
 
-## Our Relationship with AI
+## Relationship with AI
 
 AI can generate interpretations.  
-But it cannot bear responsibility for results.
+However, it cannot take responsibility for results.
 
 VCDesign does not  
-seek safety by controlling AI.
+try to make AI safe by controlling it.
 
-**It achieves safety by not letting AI decide  
-where responsibility begins**.
+It makes it safe by **not letting AI decide where responsibility begins.**
 
-AI is not a proxy for judgment.  
-It is a presence that illuminates the premises for valid judgment.
-
----
-
-## What This Philosophy Yields
-
-From this philosophy, the following structures emerge:
-
-- Separation of Fact / Hypothesis / Resolution  
-- Separation of Core and Binding  
-- Refusal to treat operational judgment as configuration  
-
-These are not features.  
-**They are non-negotiable constraints**.
+AI is not an agent of judgment.  
+It is an existence that illuminates the premises under which judgment stands.
 
 ---
 
-## In Conclusion
+## Finally
 
-If this philosophy seems strict,  
-it is because looseness did not survive where it was born.
+If this philosophy looks strict,  
+it is because it was born from a place where looseness could not survive.
 
-VCDesign is not a philosophy for stopping change.
+VCDesign is not  
+a philosophy to stop change.
 
-It is a philosophy for preserving  
-the conditions under which value does not break  
-in the midst of change.
+It is **a philosophy to protect the conditions under which value is not severed**  
+amidst change.
 
 ---
 
 ## Positioning
 
-- Above: VCDesign Constitution  
+- Upper: VCDesign Constitution  
 - This Document: Reason for Existence (Why)  
-- Below: Manifesto / Narrative / Tools  
+- Lower: Manifesto / Narrative / Tools  
 
 This document records  
-**why VCDesign could not but exist**.
+**why VCDesign was placed here.**

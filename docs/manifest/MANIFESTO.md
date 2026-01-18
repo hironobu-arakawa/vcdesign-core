@@ -1,109 +1,130 @@
 # MANIFESTO
 — Design Attitude of VCDesign —
 
-VCDesign is not a philosophy for optimizing deliverables.
-It is a design attitude to prevent judgment and responsibility from being severed in time.
+VCDesign is not  
+a philosophy for optimizing deliverables.
+
+It is a **design attitude**  
+to prevent judgment and responsibility  
+from being severed in time.
 
 ---
 
-## We Design Judgments, Not Results
+## We design judgment, not results
 
-We do not define the correct results.
+We do not  
+define correct results.
 
-What we design is
-**the place where that judgment can validly exist.**
-
----
-
-## We Do Not Assume Optimization
-
-"Because we can" is not a criterion for judgment.
-"Because it's fast" is not a justification for proceeding.
-
-Optimization is an option, not an obligation.
+What we design is  
+**the place where that judgment may validly stand.**
 
 ---
 
-## We Do Not Omit Responsibility
+## We do not make optimization an obligation
 
-There is always a place for responsibility in judgment.
+We do not make "because we can" a criterion for judgment.  
+We do not justify "because it's fast" to proceed.
 
-- Who takes it on?
-- How far do they take it?
-- When and under what conditions is it returned?
-
-We do not allow judgments where this is not explicit to be established.
+Optimization is  
+an option, not a premise.
 
 ---
 
-## We Refuse Silenced Automation
+## We do not omit responsibility
 
-Automation hides judgment.
+In judgment,  
+there is always a place for responsibility.
 
-We do not adopt automation where intent cannot be explained,
+- Who takes it?  
+- How far do they take it?  
+- When and under what conditions is it returned?  
+
+We do not allow judgment  
+where this is not explicit  
+to be established.
+
+---
+
+## We refuse silenced automation
+
+Automation  
+hides judgment.
+
+We do not adopt  
+automation where intent cannot be explained,  
 or automation where responsibility cannot be traced.
 
 ---
 
-## We Separate Judgments
+## We separate judgment
 
-We clearly distinguish the following:
+We explicitly separate  
+the following:
 
-- Fact
-- Hypothesis
+- Fact  
+- Hypothesis  
 - Resolution (Accepted Judgment)
 
-We do not tolerate designs that mix these.
+We do not allow designs  
+that mix these.
 
 ---
 
-## We Do Not Erase Past Judgments
+## We do not erase past judgments
 
-We do not overwrite past judgments.
-We do not move forward through oblivion.
+We do not overwrite  
+past judgments.
 
-We decide whether to re-accept
-or return them.
+We do not move forward  
+by forgetting.
 
----
-
-## We Include Stopping in Design
-
-We do not consider the inability to judge as failure.
-When responsibility cannot be defined, we stop.
-
-When context drifts, we stop.
-Stopping is a legitimate design choice
-driven by The Sensor and The Loop.
+Decide whether to re-accept  
+or to return.
 
 ---
 
-## We Handle Value Within Time
+## We include stopping in the design
 
-Value cannot be measured at the moment of completion.
+We do not view  
+inability to judge as failure.
 
-Value survives only when
-judgment and responsibility
-are passed to the next Chapter.
+We do not view  
+silence as an error.
+
+**If one cannot take responsibility,  
+withdraw the judgment.**
 
 ---
 
-## About This Manifesto
+## We handle value within time
 
-This document is a **declaration of design attitude** in VCDesign.
+Value cannot be measured  
+at the moment of completion.
 
-- It is not an implementation procedure
-- It is not a checklist
-- It is not a collection of best practices
+Value survives  
+only when judgment and responsibility  
+are handed over to the next time.
 
-Designs that do not agree with this declaration
-shall not bear the name of VCDesign.
+---
+
+## About this Manifesto
+
+This document is  
+a **declaration of design attitude**  
+in VCDesign.
+
+- It is not an implementation procedure  
+- It is not a checklist  
+- It is not a collection of best practices  
+
+Designs that do not agree with this attitude  
+shall not name themselves VCDesign.
 
 ---
 
 ## Positioning
 
-- Upper: VCDesign Constitution
-- Premise: PHILOSOPHY (Reason for existence)
-- This Document: Declaration of Design Attitude
+- Upper: VCDesign Constitution  
+- Prerequisite: PHILOSOPHY / Prelude  
+- This Document: Declaration of Design Attitude  
 - Lower: Narrative / Tools / Implementation
