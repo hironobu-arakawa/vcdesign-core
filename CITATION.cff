@@ -1,26 +1,21 @@
 cff-version: 1.2.0
+message: "If you use or reference this work, please cite it to preserve the original design context."
 title: "VCDesign Core"
-message: >
-  If you use or reference this work, please cite it to preserve
-  the original design context.
-type: software
-
-authors:
-  - family-names: Arakawa
-    given-names: Hironobu
-
-repository-code: "https://github.com/VCDesign-org/vcdesign-core"
-
 abstract: >
   VCDesign (Value Continuity Design) is a design framework that focuses on
   preserving value continuity across time and change by explicitly defining
   responsibility boundaries and deliberate decision suspension.
-
+authors:
+  - family-names: Arakawa
+    given-names: Hironobu
+version: 2.0.0
+date-released: 2026-01-19 # 公開日に合わせて変更してください
+license: MIT
+repository-code: "https://github.com/VCDesign-org/vcdesign-core"
 keywords:
-  - value continuity
-  - responsibility boundary
-  - decision suspension
-  - system design
-  - AI governance
-
-license: CC-BY-4.0
+  - value-continuity-design
+  - vcdesign
+  - responsibility-boundary
+  - decision-suspension
+  - system-design
+  - ai-governance
