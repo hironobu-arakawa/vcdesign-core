@@ -1,0 +1,19 @@
+protocol: continuity-claim
+version: 1.0
+
+signals:
+  SIGNED:
+    meaning: value_continuity_verified
+    action: connect
+  DENIED:
+    meaning: context_or_meaning_drift
+    action: disconnect_immediately
+  SILENCE:
+    meaning: unsafe_or_unknown
+    action: disconnect_gracefully
+
+constraints:
+  - no_content_inspection_by_client
+  - verify_before_pull
+  - silence_is_safety
+  - non_optimization_pledge

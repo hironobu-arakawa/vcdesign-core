@@ -1,0 +1,48 @@
+version: "vcdesign/1.0"
+
+# =================================================
+# 1. Boundaries (世界の定義)
+# ここで定義された「ID」が、全ての信頼のルートになります。
+# =================================================
+boundaries:
+  - id: "domain.secure.python"
+    description: "構文的に正しく、かつ安全なPythonコードが保証される世界"
+    context: "executable_code"
+  
+  - id: "domain.creative.poetry"
+    description: "自由な表現が許されるポエムの世界"
+    context: "natural_language"
+
+# =================================================
+# 2. Agents (住民の定義)
+# 実装クラスではなく、「役割(Role)」と「誓約(Pledge)」を定義します。
+# =================================================
+agents:
+  # 上流: 仕様を決める人
+  - name: "Architect-Agent"
+    role: "spec_designer"
+    pledge:
+      boundary: "domain.secure.python" # 私はこの法を守る
+      reason: "Generate unambiguous specifications"
+
+  # 下流: 実装する人
+  - name: "Coder-Agent"
+    role: "implementer"
+    pledge:
+      boundary: "domain.secure.python" # 私もこの法を守る
+      reason: "Convert spec to executable code"
+
+  # 異物: ポエムを書く人
+  - name: "Poet-Agent"
+    role: "creator"
+    pledge:
+      boundary: "domain.creative.poetry" # 私は別の法で生きている
+      reason: "Express emotions"
+
+# =================================================
+# 3. Protocols (法の運用ルール)
+# CCPをどの厳格レベルで適用するか
+# =================================================
+policies:
+  verification_level: "strict" # strict = 署名とハッシュを必ず検証する
+  on_drift: "disconnect"       # 文脈乖離時は即切断
